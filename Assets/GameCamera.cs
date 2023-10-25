@@ -23,7 +23,7 @@ public class GameCamera : MonoBehaviour
     }
 
 
-    public void Update()
+    public void LateUpdate()
     {
         if (GameManager.Instance.currentGameSate != GameManager.gamestate.Gameplay) return;
         UpdateCamera();
