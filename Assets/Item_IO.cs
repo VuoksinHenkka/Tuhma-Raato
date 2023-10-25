@@ -19,7 +19,7 @@ public class Item_IO : MonoBehaviour
 
     public void Receive(Item InteractWith)
     {
-        print(InteractWith.Name);
+        print(Name+" received "+InteractWith.Name);
     }
 
 }
