@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class zombie : MonoBehaviour
 {
+    public characterGFX ourcharacterGFX;
     public NavMeshAgent ourAgent;
     public bool interestedInPlayer = true;
     public float attackDistance = 1;
@@ -36,6 +37,7 @@ public class zombie : MonoBehaviour
     {
         if (interestedInPlayer)
         {
+            if (ourcharacterGFX) ourcharacterGFX.LookToDirection = GameManager.Instance.ref_Player.transform.position;
             currentDistanceToPlayer = DistanceToPlayer();
             MoveSpeed = Mathf.Lerp(MoveSpeed, MoveSpeedTarget, 1f * Time.deltaTime);
 

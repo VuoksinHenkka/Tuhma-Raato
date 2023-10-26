@@ -13,6 +13,7 @@ public class GamePlayerItemUsing : MonoBehaviour
     public float cooldown = 0;
     public LineRenderer ourInteractionLine;
     public LayerMask forInteractionRayCast;
+    public characterGFX ourCharacterGFX;
 
     private void Awake()
     {
@@ -23,6 +24,8 @@ public class GamePlayerItemUsing : MonoBehaviour
 
     void Update()
     {
+        if (currentTarget && ourCharacterGFX) ourCharacterGFX.LookToDirection_override = currentTarget.transform.position;
+        else if (!currentTarget && ourCharacterGFX) ourCharacterGFX.LookToDirection_override = Vector3.zero;
         if (cooldown != 0) cooldown = Mathf.Clamp(cooldown -= 1 * Time.deltaTime, 0, 100);
 
         if (Input.GetButtonDown("Fire1"))

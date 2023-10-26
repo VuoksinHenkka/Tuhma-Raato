@@ -12,6 +12,7 @@ public class GamePlayer : MonoBehaviour
 
     public Vector3 MoveVector_FromInput = Vector3.zero;
     public CharacterController ourCharacterController;
+    public characterGFX ourcharacterGFX;
 
 
     private void Awake()
@@ -37,6 +38,9 @@ public class GamePlayer : MonoBehaviour
         MoveVector_FromInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 MoveVector_Final = (GameManager.Instance.ref_Camera.moveTransform.right * MoveVector_FromInput.x) + (GameManager.Instance.ref_Camera.moveTransform.forward * MoveVector_FromInput.z);
         ourCharacterController.Move(MoveVector_Final * (MoveSpeed*Time.deltaTime));
+
+        if (ourcharacterGFX) ourcharacterGFX.LookToDirection = transform.position + MoveVector_Final;
+
 
     }
 }
