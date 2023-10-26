@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class zombie : MonoBehaviour
+public class zombie : enemy
 {
     public characterGFX ourcharacterGFX;
     public NavMeshAgent ourAgent;
@@ -16,6 +16,9 @@ public class zombie : MonoBehaviour
     private float UpdateCycleForMoveTargets_Target = 2;
     private float MoveSpeed = 0;
     private float MoveSpeedTarget = 0;
+
+
+    public int HP = 5;
 
     private void Awake()
     {
@@ -71,4 +74,29 @@ public class zombie : MonoBehaviour
     {
         return Vector3.Distance(transform.position, GameManager.Instance.ref_Player.transform.position);
     }
+
+
+    public override void Hurt(int _amount)
+    {
+        HP = HP - _amount;
+        if (HP < 1) Die();
+    }
+
+    public override void Die()
+    {
+        gameObject.SetActive(false);
+    }
+    public override void Burn()
+    {
+    }
+    public override void Wet()
+    {
+    }
+    public override void Electrocute()
+    {
+    }
+    public override void Stun()
+    {
+    }
+
 }

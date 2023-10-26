@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Item_IO : MonoBehaviour
+public abstract class Item_IO : MonoBehaviour
 {
     public Item ourItem;
 
@@ -12,14 +9,11 @@ public class Item_IO : MonoBehaviour
     public float ActionCoolDown = 1;
     public float SendRange = 5;
 
-    private void Awake()
+    private void Start()
     {
         ourItem = new Item(name, ActionCoolDown, SendRange);
     }
 
-    public void Receive(Item InteractWith)
-    {
-        print(Name+" received "+InteractWith.Name);
-    }
+    public abstract void Receive(Item InteractWith);
 
 }

@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Gradient ourSun_colour_beforemidnight;
     public Gradient ourSun_colour_pastmidnight;
     public NavMeshSurface ref_NavMeshSurface;
-
+    public ItemSolver ref_ItemSolver;
     private Color ourSun_colour_lerpTarget;
     public GameCamera ref_Camera;
     public GamePlayer ref_Player;

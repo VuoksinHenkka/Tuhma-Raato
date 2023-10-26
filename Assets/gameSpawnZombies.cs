@@ -6,13 +6,17 @@ using UnityEngine.AI;
 
 public class gameSpawnZombies : MonoBehaviour
 {
-    private float spawnFrequency = 30;
-    private int spawnAmount = 2;
+    private float spawnFrequency = 40;
+    private int spawnAmount = 1;
     public GameObject Zombie_Basic;
     public List<Transform> spawnPositions;
     private float currenttime = 0;
 
 
+    private void Start()
+    {
+        currenttime = spawnFrequency;
+    }
 
     void Update()
     {
@@ -21,7 +25,7 @@ public class gameSpawnZombies : MonoBehaviour
         else
         {
             currenttime = 0;
-            spawnFrequency = Mathf.Clamp(spawnFrequency--, 5, 30);
+            spawnFrequency = Mathf.Clamp(spawnFrequency--, 10, 40);
             StartSpawning();
         }
     }

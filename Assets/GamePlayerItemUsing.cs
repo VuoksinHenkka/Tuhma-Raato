@@ -18,7 +18,8 @@ public class GamePlayerItemUsing : MonoBehaviour
     private void Awake()
     {
         data_StoredItems = new List<Item>();
-        data_StoredItems.Add(new Item("Nothing", 1f, 5f));
+        //data_StoredItems.Add(new Item("Nothing", 1f, 4f));
+        data_StoredItems.Add(new Item("Axe", 1.5f, 4f));
         currentItem = data_StoredItems[0];
     }
 
@@ -36,6 +37,7 @@ public class GamePlayerItemUsing : MonoBehaviour
         {
             OpenInventory();
         }
+
 
         if (currentTarget == null) DrawInteractionLine(false);
         else DrawInteractionLine(true);

@@ -779,6 +779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913980310}
   - component: {fileID: 913980309}
+  - component: {fileID: 913980311}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -864,6 +865,7 @@ MonoBehaviour:
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
   ref_NavMeshSurface: {fileID: 1008147964}
+  ref_ItemSolver: {fileID: 913980311}
   ref_Camera: {fileID: 0}
   ref_Player: {fileID: 0}
 --- !u!4 &913980310
@@ -884,6 +886,18 @@ Transform:
   - {fileID: 640170644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &913980311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913980308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 869662b204753492b8c3d73e59dc5a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &964577121
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,12 +1013,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 964577121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cf594c07ecd4e36887f5fa09b700f2, type: 3}
+  m_Script: {fileID: 11500000, guid: b23ac52ea52b64e21b1a9b46baeadc67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Box
   ActionCoolDown: 1
   SendRange: 5
+  target: {fileID: 0}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1008147962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e039a87a2062424abb462276ec146d0,
