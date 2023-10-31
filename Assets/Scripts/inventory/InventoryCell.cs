@@ -2,20 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class InventoryCell : MonoBehaviour, ISelectHandler
+public class InventoryCell : MonoBehaviour, ISelectHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
     public Inventory ourInventory;
-    public Item ourItem;
-
+    public ItemDefiner ourItem;
+    private Image ourImage;
+    
     private void Awake()
     {
-        ourItem = new Item("Nothing", 1, 5, 9999, "", 0, Item.Type.Generic);
+        ourImage = GetComponent<Image>();
     }
-
     public void OnSelect(BaseEventData eventData)
     {
         ourInventory.SelectCell(this);
+    }
+
+    public void SetItemTo(ItemDefiner newItem)
+    {
+        ourItem = newItem;
+        ourImage.sprite = newItem.Icon;
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ourInventory.ShowDescription(this);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
     }
 }

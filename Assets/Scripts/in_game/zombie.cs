@@ -63,8 +63,7 @@ public class zombie : enemy
 
             if (DistanceToPlayer() < attackDistance)
             {
-                print("hurt player");
-                GameManager.Instance.HurtPlayer();
+                GameManager.Instance.ref_Stats.HP_Modify(-5*Time.deltaTime);
             }
         }
 

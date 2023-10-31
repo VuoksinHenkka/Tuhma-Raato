@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1557717249024270153}
   - component: {fileID: 7155891210517293470}
   - component: {fileID: 1386812345695848962}
-  - component: {fileID: 6643793217223020551}
   - component: {fileID: 6368174250827914899}
+  - component: {fileID: 1999039184074680825}
   m_Layer: 5
   m_Name: Inventory_Cell
   m_TagString: Untagged
@@ -77,19 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6643793217223020551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106783608050846417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e467ab80012f4305bfa0520f7014571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ourInventory: {fileID: 0}
 --- !u!114 &6368174250827914899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +84,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106783608050846417}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
   m_Name: 
@@ -131,3 +118,17 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1386812345695848962}
+--- !u!114 &1999039184074680825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106783608050846417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e467ab80012f4305bfa0520f7014571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ourInventory: {fileID: 0}
+  ourItem: {fileID: 0}

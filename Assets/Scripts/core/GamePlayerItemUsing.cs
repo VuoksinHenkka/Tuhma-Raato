@@ -7,21 +7,11 @@ public class GamePlayerItemUsing : MonoBehaviour
 
 
     public GameObject currentTarget;
-    public Dictionary<Item, Sprite> data_dictionaryOfItemSprites;
-    public List<Item> data_StoredItems;
-    public Item currentItem;
     public float cooldown = 0;
     public LineRenderer ourInteractionLine;
     public LayerMask forInteractionRayCast;
     public characterGFX ourCharacterGFX;
 
-    private void Awake()
-    {
-        data_StoredItems = new List<Item>();
-        //data_StoredItems.Add(new Item("Nothing", 1f, 4f));
-        data_StoredItems.Add(new Item("Axe", 1.5f, 4f, 10, "Axe deals heavy damage but eats stamina fast.", 4, Item.Type.Tool));
-        currentItem = data_StoredItems[0];
-    }
 
     void Update()
     {
@@ -35,7 +25,7 @@ public class GamePlayerItemUsing : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            OpenInventory();
+            ThrowItem();
         }
 
 
@@ -72,17 +62,17 @@ public class GamePlayerItemUsing : MonoBehaviour
         if (cooldown != 0 || currentTarget == null || IsInRange() == false) return;
         else if (currentTarget.CompareTag("Item"))
         {
-            currentTarget.BroadcastMessage("Receive", currentItem, SendMessageOptions.DontRequireReceiver);
-            cooldown = currentItem.ActionCoolDown;
+            currentTarget.BroadcastMessage("Receive", GameManager.Instance.ref_ItemSolver.currentlyHolding, SendMessageOptions.DontRequireReceiver);
+            cooldown = GameManager.Instance.ref_ItemSolver.currentlyHolding.ActionCoolDown;
         }
     }
 
     private bool IsInRange()
     {
-        return (Vector3.Distance(GameManager.Instance.ref_Player.transform.position, currentTarget.transform.position) < currentItem.SendRange);
+        return (Vector3.Distance(GameManager.Instance.ref_Player.transform.position, currentTarget.transform.position) < GameManager.Instance.ref_ItemSolver.currentlyHolding.SendRange);
     }
 
-    private void OpenInventory()
+    private void ThrowItem()
     {
 
     }

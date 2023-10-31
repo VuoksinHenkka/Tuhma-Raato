@@ -31,12 +31,15 @@ public class GamePlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)) Running = true;
         if (Input.GetKeyUp(KeyCode.LeftShift)) Running = false;
 
-        if (Running) MoveSpeed = MoveSpeed_Run;
+        if (Running && GameManager.Instance.ref_Stats.Stamina > 25) MoveSpeed = MoveSpeed_Run;
         else MoveSpeed = MoveSpeed_Walk;
 
 
         MoveVector_FromInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 MoveVector_Final = (GameManager.Instance.ref_Camera.moveTransform.right * MoveVector_FromInput.x) + (GameManager.Instance.ref_Camera.moveTransform.forward * MoveVector_FromInput.z);
+
+        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-5 * Time.deltaTime);
+        else GameManager.Instance.ref_Stats.Stamina_Modify(0.5f * Time.deltaTime);
         ourCharacterController.Move(MoveVector_Final * (MoveSpeed*Time.deltaTime));
 
         if (ourcharacterGFX) ourcharacterGFX.LookToDirection = transform.position + MoveVector_Final;

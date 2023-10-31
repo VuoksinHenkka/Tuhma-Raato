@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     public Gradient ourSun_colour_beforemidnight;
     public Gradient ourSun_colour_pastmidnight;
     public NavMeshSurface ref_NavMeshSurface;
-    public ItemSolver ref_ItemSolver;
+    public ItemManager ref_ItemSolver;
+    public Stats ref_Stats;
     private Color ourSun_colour_lerpTarget;
     public GameCamera ref_Camera;
     public GamePlayer ref_Player;
@@ -63,7 +64,11 @@ public class GameManager : MonoBehaviour
             ourSun_colour_lerpTarget = UpdateSunColour();
             ourSun.color = Color.Lerp(ourSun.color, ourSun_colour_lerpTarget, 0.01f * Time.deltaTime);
             ref_Camera.ourCamera.backgroundColor = ourSun.color * 1.01f;
+        }
 
+        if (ref_Stats)
+        {
+            if (ref_Stats.HP == 0) GameOver();
         }
     }
 
@@ -90,11 +95,6 @@ public class GameManager : MonoBehaviour
     
     private void GameOver()
     {
-        print("yey");
-    }
-    public void HurtPlayer()
-    {
-        GameOver();
-        Application.Quit();
+        print("GAME OVER");
     }
 }
