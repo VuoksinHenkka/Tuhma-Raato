@@ -19,7 +19,7 @@ public class GamePlayerItemUsing : MonoBehaviour
     {
         data_StoredItems = new List<Item>();
         //data_StoredItems.Add(new Item("Nothing", 1f, 4f));
-        data_StoredItems.Add(new Item("Axe", 1.5f, 4f));
+        data_StoredItems.Add(new Item("Axe", 1.5f, 4f, 10, "Axe deals heavy damage but eats stamina fast.", 4, Item.Type.Tool));
         currentItem = data_StoredItems[0];
     }
 

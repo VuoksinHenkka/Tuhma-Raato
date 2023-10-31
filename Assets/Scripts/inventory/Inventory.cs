@@ -1,10 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
     public Canvas ourInventoryCanvas;
+    public List<InventoryCell> ourInventoryCells;
+    public InventoryCell SelectedCell;
+    public TMP_Text Selected_Description;
+
+    private void Awake()
+    {
+        ourInventoryCanvas.enabled = false;
+        foreach(InventoryCell foundcell in ourInventoryCells)
+        {
+            foundcell.ourInventory = this;
+        }
+    }
 
     private void Update()
     {
@@ -24,15 +37,30 @@ public class Inventory : MonoBehaviour
         if (ourInventoryCanvas.enabled == false)
         {
             GameManager.Instance.currentGameSate = GameManager.gamestate.Inventory;
-            InventorySetup();
+            RefreshInventory();
         }
-        else GameManager.Instance.currentGameSate = GameManager.gamestate.Gameplay;
+        else
+        {
+            GameManager.Instance.currentGameSate = GameManager.gamestate.Gameplay;
+        }
 
         ourInventoryCanvas.enabled = !ourInventoryCanvas.enabled;
     }
 
-    private void InventorySetup()
+    private void RefreshInventory()
     {
 
+    }
+
+    public void ShowDescription(InventoryCell toDescribe)
+    {
+       Selected_Description.text = toDescribe.ourItem.Description;
+    }
+
+    public void SelectCell(InventoryCell toSelect)
+    {
+        SelectedCell = toSelect;
+        RefreshInventory();
+        InventoryCall();
     }
 }

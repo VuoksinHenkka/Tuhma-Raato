@@ -11,7 +11,7 @@ public abstract class Item_IO : MonoBehaviour
 
     private void Start()
     {
-        ourItem = new Item(name, ActionCoolDown, SendRange);
+        ourItem = new Item(name, ActionCoolDown, SendRange, 9999, "", 0, Item.Type.Generic);
     }
 
     public abstract void Receive(Item InteractWith);
