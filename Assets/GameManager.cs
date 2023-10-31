@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public enum gamestate { Gameplay, Menu, GameOver}
+    public enum gamestate { Gameplay, Menu, GameOver, Inventory}
     public gamestate currentGameSate = gamestate.Gameplay;
     public int Time_Hour = 18;
     public float Time_Minute = 0;
@@ -48,7 +48,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Time.timeScale = GameSpeed;
+        if (currentGameSate == gamestate.Menu) Time.timeScale = 0;
+        else if (currentGameSate == gamestate.Inventory) Time.timeScale = 0.25f;
+        else Time.timeScale = GameSpeed;
         if (currentGameSate == gamestate.Gameplay)
         {
             if (Time_Minute != 60) Time_Minute = Mathf.Clamp(Time_Minute += ClockSpeed * Time.deltaTime, 0, 60);
