@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Concurrent;
 
 public class Inventory : MonoBehaviour
 {
@@ -124,7 +125,20 @@ public class Inventory : MonoBehaviour
 
     public void SelectCell(InventoryCell toSelect)
     {
-        SelectedCell = toSelect;
-        GameManager.Instance.ref_ItemSolver.currentlyHolding = SelectedCell.ourItem;
+        if (toSelect.ourItem.itemType == ItemDefiner.Type.Consumable)
+        {
+            ConsumeItem(toSelect.ourItem);
+            toSelect.ourItem = GameManager.Instance.ref_ItemSolver.emptyItem;
+            RefreshInventory();
+        }
+        else
+        {
+            SelectedCell = toSelect;
+            GameManager.Instance.ref_ItemSolver.currentlyHolding = SelectedCell.ourItem;
+        }
+    }
+    public void ConsumeItem(ItemDefiner consumeparameters)
+    {
+
     }
 }

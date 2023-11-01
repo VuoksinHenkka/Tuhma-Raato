@@ -9,6 +9,19 @@ public class tmp_gradientcolourfx : MonoBehaviour
     public Gradient ourGradient;
     public TMPro.TMP_Text ourText;
     public bool loop = false;
+    public Color originalColor;
+    public bool onenable = true;
+    public float speed = 0.5f;
+
+    private void Awake()
+    {
+        originalColor = ourText.color;
+    }
+
+    private void OnEnable()
+    {
+        if(onenable) ColorFlash();
+    }
 
     public void ColorFlash()
     {
@@ -19,8 +32,9 @@ public class tmp_gradientcolourfx : MonoBehaviour
     {
         if (currentFlashValue < 1)
         {
-            ourText.color = ourGradient.Evaluate(currentFlashValue);
-            currentFlashValue += 1 * Time.deltaTime;
+            ourText.color = originalColor-ourGradient.Evaluate(currentFlashValue);
+            ourText.color = new Color(ourText.color.r, ourText.color.g, ourText.color.b, ourGradient.Evaluate(currentFlashValue).a);
+            currentFlashValue += speed * Time.deltaTime;
         }
         else if (loop) currentFlashValue = 0;
         

@@ -8,7 +8,7 @@ public class zombie : enemy
     public characterGFX ourcharacterGFX;
     public NavMeshAgent ourAgent;
     public bool interestedInPlayer = true;
-    public float attackDistance = 1;
+    private float attackDistance = 2;
     public enum MovementType {straight, chaotic}
     public MovementType currentMovementType = MovementType.straight;
     private float currentDistanceToPlayer = 10;
@@ -16,7 +16,7 @@ public class zombie : enemy
     private float UpdateCycleForMoveTargets_Target = 2;
     private float MoveSpeed = 0;
     private float MoveSpeedTarget = 0;
-
+    private float AttackTimer = 0.5f;
 
     public int HP = 5;
 
@@ -63,8 +63,15 @@ public class zombie : enemy
 
             if (DistanceToPlayer() < attackDistance)
             {
-                GameManager.Instance.ref_Stats.HP_Modify(-5*Time.deltaTime);
+                if (AttackTimer != 0) AttackTimer = Mathf.Clamp(AttackTimer -= 1 * Time.deltaTime, 0, 2);
+                else
+                {
+                    GameManager.Instance.ref_Stats.HP_Modify(-10);
+                    AttackTimer = Random.Range(2,3);
+
+                }
             }
+            else if (AttackTimer != 0.5f) AttackTimer = 0.5f;
         }
 
     }
@@ -79,6 +86,7 @@ public class zombie : enemy
     {
         HP = HP - _amount;
         if (HP < 1) Die();
+        GameManager.Instance.ref_messagespawner.SpawnMessage("-"+_amount, Color.white, transform.position);
     }
 
     public override void Die()

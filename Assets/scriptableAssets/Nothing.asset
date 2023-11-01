@@ -18,5 +18,5 @@ MonoBehaviour:
   SendRange: 5
   Description: '-'
   StaminaConsumption: 0
-  DamageOutput: 1
+  DamageOutput: 0
   Icon: {fileID: 21300000, guid: ef47ec4306e1c49228b4e2e7e59af18d, type: 3}

@@ -10,6 +10,7 @@ public class InteractionsTarget : ItemReceiver
     private IHaveStatusEffects target_HasStatusEffects;
     private ItemManager ourItemSolver;
     public UnityEvent onInteract;
+    public bool spawnDamageMessage = true;
 
     private void Start()
     {
@@ -27,15 +28,15 @@ public class InteractionsTarget : ItemReceiver
     {
         if (GameManager.Instance.ref_Stats.Stamina < _interactWith.StaminaConsumption)
         {
-            print("NOT ENOUGH STAMINA");
+            GameManager.Instance.ref_messagespawner.SpawnMessage("Not enough stamina!", Color.red, GameManager.Instance.ref_Player.transform.position);
             return;
         }
-        print(name + " receives " + _interactWith.name);
+        //print(name + " receives " + _interactWith.name);
         onInteract.Invoke();
         if (target_CanDie != null)
         {
-            print("target implements candie");
             int _getDamage = _interactWith.DamageOutput;
+            if (spawnDamageMessage) GameManager.Instance.ref_messagespawner.SpawnMessage("-" + _getDamage, Color.white, transform.position);
             if (_getDamage > 0) target_CanDie.Hurt(_getDamage);
         }
 
