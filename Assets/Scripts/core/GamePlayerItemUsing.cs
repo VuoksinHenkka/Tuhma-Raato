@@ -15,6 +15,7 @@ public class GamePlayerItemUsing : MonoBehaviour
 
     void Update()
     {
+        GameManager.Instance.cooldownTimer = cooldown;
         if (currentTarget && ourCharacterGFX) ourCharacterGFX.LookToDirection_override = currentTarget.transform.position;
         else if (!currentTarget && ourCharacterGFX) ourCharacterGFX.LookToDirection_override = Vector3.zero;
         if (cooldown != 0) cooldown = Mathf.Clamp(cooldown -= 1 * Time.deltaTime, 0, 100);

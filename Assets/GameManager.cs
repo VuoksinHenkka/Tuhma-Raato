@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public float Time_Minute = 0;
     private float ClockSpeed = 1f;
     public float GameSpeed = 1;
-
+    public float cooldownTimer = 0;
+    public float MaxCooldown = 1;
     public Light ourSun;
     public Gradient ourSun_colour_beforemidnight;
     public Gradient ourSun_colour_pastmidnight;

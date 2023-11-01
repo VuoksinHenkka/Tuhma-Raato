@@ -4,12 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Concurrent;
+using Unity.VisualScripting;
+using UnityEditor.Search;
 
 public class Inventory : MonoBehaviour
 {
     [Header("ITEM AND INVENTORY")]
     public Canvas ourInventoryCanvas;
     public Image itemInHand;
+    public Image itemInHand_cooldown;
+
     public TMP_Text itemInHandName;
     public List<InventoryCell> ourInventoryCells;
     public InventoryCell SelectedCell;
@@ -36,10 +40,15 @@ public class Inventory : MonoBehaviour
             foundcell.ourInventory = this;
             foundcell.ourItem = GameManager.Instance.ref_ItemSolver.emptyItem;
         }
+        for (int i =0; i < ourInventoryCells.Count-1; i++)
+        {
+            ourInventoryCells[i].ourIndex = i;
+        }
     }
 
     private void Update()
     {
+        itemInHand_cooldown.fillAmount = Mathf.InverseLerp(0, GameManager.Instance.MaxCooldown, GameManager.Instance.cooldownTimer);
         //STAT STUFF
         if (GameManager.Instance.currentGameSate == GameManager.gamestate.Menu && ourStatsCanvas.enabled) ourStatsCanvas.enabled = false;
         else if (ourStatsCanvas.enabled == false) ourStatsCanvas.enabled = true;
@@ -82,6 +91,8 @@ public class Inventory : MonoBehaviour
             {
                 itemInHandName.text = GameManager.Instance.ref_ItemSolver.currentlyHolding.Name;
                 itemInHand.sprite = GameManager.Instance.ref_ItemSolver.currentlyHolding.Icon;
+                itemInHand_cooldown.sprite = GameManager.Instance.ref_ItemSolver.currentlyHolding.Icon;
+
             }
         }
 
@@ -127,18 +138,22 @@ public class Inventory : MonoBehaviour
     {
         if (toSelect.ourItem.itemType == ItemDefiner.Type.Consumable)
         {
-            ConsumeItem(toSelect.ourItem);
-            toSelect.ourItem = GameManager.Instance.ref_ItemSolver.emptyItem;
-            RefreshInventory();
+            ConsumeItem(toSelect);
         }
         else
         {
             SelectedCell = toSelect;
             GameManager.Instance.ref_ItemSolver.currentlyHolding = SelectedCell.ourItem;
+            GameManager.Instance.MaxCooldown = toSelect.ourItem.ActionCoolDown;
         }
     }
-    public void ConsumeItem(ItemDefiner consumeparameters)
+    public void ConsumeItem(InventoryCell toConsume)
     {
-
+        ItemDefiner consumeparameters = toConsume.ourItem;
+        GameManager.Instance.ref_Stats.HP_Modify(consumeparameters.GiveHealth);
+        GameManager.Instance.ref_Stats.Stamina_Modify(consumeparameters.GiveStamina);
+        int i = toConsume.ourIndex;
+        GameManager.Instance.ref_ItemSolver.PlayerItems[i] = GameManager.Instance.ref_ItemSolver.emptyItem;
+        RefreshInventory();
     }
 }

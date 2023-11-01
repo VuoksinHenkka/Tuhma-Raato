@@ -11,7 +11,7 @@ public class ItemPickUp : ItemReceiver
         bool CanPick = GameManager.Instance.ref_ItemSolver.Try_Pickup(ourItem);
         if (CanPick)
         {
-            GameManager.Instance.ref_messagespawner.SpawnMessage(("Picked up " + ourItem.name), Color.white, GameManager.Instance.ref_Player.transform.position);
+            GameManager.Instance.ref_messagespawner.SpawnMessage(("Picked up " + ourItem.Name), Color.white, GameManager.Instance.ref_Player.transform.position);
             gameObject.SetActive(false);
         }
         else

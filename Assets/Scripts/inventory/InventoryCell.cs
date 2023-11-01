@@ -10,6 +10,7 @@ public class InventoryCell : MonoBehaviour, ISelectHandler, IPointerEnterHandler
     public Inventory ourInventory;
     public ItemDefiner ourItem;
     private Image ourImage;
+    public int ourIndex = 0;
     
     private void Awake()
     {
