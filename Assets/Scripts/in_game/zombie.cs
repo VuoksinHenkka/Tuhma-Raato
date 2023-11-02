@@ -18,12 +18,12 @@ public class zombie : enemy
     private float MoveSpeedTarget = 0;
     private float AttackTimer = 0.5f;
 
-    public int HP = 5;
+    private int HP = 6;
 
     private void Awake()
     {
         ourAgent.avoidancePriority = Random.Range(30, 60);
-        MoveSpeed = Random.Range(2, 5);
+        MoveSpeed = Random.Range(1, 7);
         PickRandomMovePattern();
         MoveSpeedTarget = Random.Range(0.5f, 7);
         MoveSpeed = MoveSpeedTarget;
@@ -74,6 +74,7 @@ public class zombie : enemy
             else if (AttackTimer != 0.5f) AttackTimer = 0.5f;
         }
 
+        ourcharacterGFX.ourMoveVelocity = ourAgent.velocity.magnitude;
     }
 
     private float DistanceToPlayer()
@@ -84,9 +85,13 @@ public class zombie : enemy
 
     public override void Hurt(int _amount)
     {
+        GameManager.Instance.ref_messagespawner.SpawnMessage("-" + _amount, Color.white, transform.position);
         HP = HP - _amount;
         if (HP < 1) Die();
-        GameManager.Instance.ref_messagespawner.SpawnMessage("-"+_amount, Color.white, transform.position);
+        else
+        {
+            ourcharacterGFX.ourAnimator.SetTrigger("Hurt");
+        }
     }
 
     public override void Die()

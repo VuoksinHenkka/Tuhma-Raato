@@ -2449,6 +2449,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LookToDirection: {x: 0, y: 0, z: 0}
   LookToDirection_override: {x: 0, y: 0, z: 0}
+  ourAnimator: {fileID: 0}
+  ourMoveVelocity: 0
 --- !u!4 &481077361
 Transform:
   m_ObjectHideFlags: 0
