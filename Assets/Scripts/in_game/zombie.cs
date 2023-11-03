@@ -18,7 +18,7 @@ public class zombie : enemy
     private float MoveSpeedTarget = 0;
     private float AttackTimer = 0.5f;
 
-    private int HP = 6;
+    private int HP = 10;
 
     private void Awake()
     {
