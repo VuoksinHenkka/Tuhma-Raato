@@ -7,10 +7,13 @@ public class GamePlayerItemUsing : MonoBehaviour
 
 
     public GameObject currentTarget;
+    public UI_playerAimingInfoReader ourTargetInfoReader;
     public float cooldown = 0;
     public LineRenderer ourInteractionLine;
     public LayerMask forInteractionRayCast;
     public characterGFX ourCharacterGFX;
+
+    private float currentInteractionRange = 4;
 
 
     void Update()
@@ -30,9 +33,26 @@ public class GamePlayerItemUsing : MonoBehaviour
         }
 
 
+        if (currentTarget)
+        {
+            if (currentTarget.GetComponent<IHaveLimitedUseRange>() != null) currentInteractionRange = 5;
+            else currentInteractionRange = GameManager.Instance.ref_ItemSolver.currentlyHolding.SendRange;
+        }
+
+
         if (currentTarget == null) DrawInteractionLine(false);
         else DrawInteractionLine(true);
+
+        if (currentTarget)
+        {
+            ourTargetInfoReader.ourInteractionTarget_Gameobject = currentTarget;
+        }
+        else ourTargetInfoReader.ourInteractionTarget_Gameobject = null;
+
     }
+
+
+
     private void DrawInteractionLine(bool turnOn)
     {
         if (turnOn)
@@ -70,7 +90,10 @@ public class GamePlayerItemUsing : MonoBehaviour
 
     private bool IsInRange()
     {
-        return (Vector3.Distance(GameManager.Instance.ref_Player.transform.position, currentTarget.transform.position) < GameManager.Instance.ref_ItemSolver.currentlyHolding.SendRange);
+        if (currentTarget == null) return false;
+
+        
+        return (Vector3.Distance(GameManager.Instance.ref_Player.transform.position, currentTarget.transform.position) < currentInteractionRange);
     }
 
     private void ThrowItem()

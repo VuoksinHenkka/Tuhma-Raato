@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 0
   Name: Pistol
   ActionCoolDown: 5
-  SendRange: 10
+  SendRange: 20
   Description: Massive damage with a good range, but slow. 10 DMG, Consumes 1 Stamina
   StaminaConsumption: 1
   DamageOutput: 10

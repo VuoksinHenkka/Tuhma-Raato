@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPickUp : ItemReceiver
+public class ItemPickUp : ItemReceiver, IHaveName, IHaveLimitedUseRange
 {
     public ItemDefiner ourItem;
+
+
+    public string GiveName()
+    {
+        return ourItem.Name;
+    }
     public override void Receive(ItemDefiner received)
     {
         

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class zombie : enemy
+public class zombie : enemy, IHaveName
 {
     public characterGFX ourcharacterGFX;
     public NavMeshAgent ourAgent;
@@ -17,9 +17,18 @@ public class zombie : enemy
     private float MoveSpeed = 0;
     private float MoveSpeedTarget = 0;
     private float AttackTimer = 0.5f;
-
+    private string ourName = "Zombie";
     private int HP = 10;
 
+    public override string GiveName()
+    {
+        return ourName;
+    }
+
+    public override string GiveCurrentHP()
+    {
+        return HP.ToString();
+    }
     private void Awake()
     {
         ourAgent.avoidancePriority = Random.Range(30, 60);

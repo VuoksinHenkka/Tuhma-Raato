@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InteractionsTarget : ItemReceiver
+public class InteractionsTarget : ItemReceiver, IHaveName
 {
     public GameObject target;
     private ICanDie target_CanDie;
@@ -11,6 +11,12 @@ public class InteractionsTarget : ItemReceiver
     private ItemManager ourItemSolver;
     public UnityEvent onInteract;
     public bool spawnDamageMessage = true;
+    public string ourName = "Item";
+
+    public string GiveName()
+    {
+        return ourName;
+    }
 
     private void Start()
     {

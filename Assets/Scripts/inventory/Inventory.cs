@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Collections.Concurrent;
-using Unity.VisualScripting;
-using UnityEditor.Search;
 
 public class Inventory : MonoBehaviour
 {
@@ -29,6 +26,7 @@ public class Inventory : MonoBehaviour
     public TMP_Text Stamina_text;
     public Image HP_RadialFill;
     public Image Stamina_RadialFill;
+
 
 
     private void Awake()

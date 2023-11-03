@@ -6,5 +6,6 @@ public interface ICanDie
 {
     public void Die();
     public void Hurt(int _amount);
+    public string GiveCurrentHP();
 
 }
