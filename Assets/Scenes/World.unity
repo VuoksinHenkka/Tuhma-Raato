@@ -6437,12 +6437,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_CollectObjects: 0
+  m_CollectObjects: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1
   m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -12607,6 +12607,7 @@ MonoBehaviour:
   targetHP: {fileID: 1967134401}
   targetHP_root: {fileID: 1502051469}
   NameOfTarget: 
+  HPofTarget: 
 --- !u!114 &2112797736
 MonoBehaviour:
   m_ObjectHideFlags: 0
