@@ -8,7 +8,7 @@ public class GameCamera : MonoBehaviour
 
     public Camera ourCamera;
     public Transform moveTransform;
-
+    public Vector2 playerPositionInScreenSpace;
 
     private Vector3 moveTransform_originalposition;
     private void Awake()
@@ -27,6 +27,7 @@ public class GameCamera : MonoBehaviour
     {
         if (GameManager.Instance.currentGameSate != GameManager.gamestate.Gameplay) return;
         UpdateCamera();
+        playerPositionInScreenSpace = ourCamera.WorldToScreenPoint(GameManager.Instance.ref_Player.transform.position);
     }
 
     private void UpdateCamera()
