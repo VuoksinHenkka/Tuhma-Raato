@@ -38,6 +38,16 @@ public class ItemManager : MonoBehaviour
         return toReturn;
     }
 
+    public void SpendItemInHand()
+    { 
+        if (PlayerItems.Contains(currentlyHolding))
+        {
+            int indexOfItem = PlayerItems.IndexOf(currentlyHolding);
+            PlayerItems.RemoveAt(indexOfItem);
+            PlayerItems.Add(emptyItem);
+        }
+    }
+
     public bool Try_Pickup(ItemDefiner toPickUp)
     {
         bool toReturn = false;

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameCamera ref_Camera;
     public GamePlayer ref_Player;
 
+
     //peli alkaa klo 18 ja loppuu klo 8.00
 
     private static GameManager _instance;
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
 
             }
             ourSun_colour_lerpTarget = UpdateSunColour();
-            ourSun.color = Color.Lerp(ourSun.color, ourSun_colour_lerpTarget, 0.01f * Time.deltaTime);
+            ourSun.color = Color.Lerp(ourSun.color, ourSun_colour_lerpTarget, 0.1f * Time.deltaTime);
             ref_Camera.ourCamera.backgroundColor = ourSun.color * 1.01f;
         }
 

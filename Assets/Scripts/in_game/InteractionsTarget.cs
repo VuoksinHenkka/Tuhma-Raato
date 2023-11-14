@@ -26,7 +26,7 @@ public class InteractionsTarget : ItemReceiver, IHaveName
             target_CanDie = target.GetComponent<ICanDie>();
             target_HasStatusEffects = target.GetComponent<IHaveStatusEffects>();
         }
-
+         
 
     }
 

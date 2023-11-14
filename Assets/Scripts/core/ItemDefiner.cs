@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemDefiner : ScriptableObject
 {
 
-    public enum Type { Tool, Consumable, Generic };
+    public enum Type { Tool, Consumable, Generic, Key};
 
     [Header("ITEM PROPERTIES")]
     public Type itemType = Type.Generic;
