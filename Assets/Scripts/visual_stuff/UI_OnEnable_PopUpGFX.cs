@@ -10,11 +10,13 @@ public class UI_OnEnable_PopUpGFX : MonoBehaviour
     private float currentEvaluation = 0.01f;
     private Vector3 originalScale;
     private bool disableWithPopUp_Active = false;
+    public Vector2 speedScaleRandom = Vector2.zero;
 
 
     private void Awake()
     {
         originalScale = transform.localScale;
+        if (speedScaleRandom != Vector2.zero ) { ScaleSpeed = ScaleSpeed * Random.Range(speedScaleRandom.x, speedScaleRandom.y); }
     }
     private void OnEnable()
     {

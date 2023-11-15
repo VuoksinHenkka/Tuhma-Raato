@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1386812345695848962}
   - component: {fileID: 6368174250827914899}
   - component: {fileID: 1999039184074680825}
+  - component: {fileID: 9080891492390049368}
+  - component: {fileID: 8271224280827804538}
   m_Layer: 5
   m_Name: Inventory_Cell
   m_TagString: Untagged
@@ -132,3 +134,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ourInventory: {fileID: 0}
   ourItem: {fileID: 0}
+  ourIndex: 0
+--- !u!114 &9080891492390049368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106783608050846417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bb8403b3fc84e2288771159f957ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScalePattern:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.3
+      value: 0.1
+      inSlope: 0.0070755
+      outSlope: 0.0070755
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5333333
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.48988312
+      value: 0.944886
+      inSlope: 1.828121
+      outSlope: 1.828121
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.21509647
+    - serializedVersion: 3
+      time: 0.75
+      value: 1
+      inSlope: 0.21188156
+      outSlope: 0.21188156
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ScaleSpeed: 2
+  speedScaleRandom: {x: 0.75, y: 1}
+--- !u!114 &8271224280827804538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106783608050846417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6cd5be39ab0240d8ac5feed144c30aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RangeOfDegrees: 4
