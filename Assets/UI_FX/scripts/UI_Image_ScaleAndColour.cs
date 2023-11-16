@@ -20,8 +20,8 @@ public class UI_Image_ScaleAndColour : UI_ScaleAndColour
             print("WARNING: UI_Juice on " + gameObject.name + " did not find a Image component. Disabling script.");
             this.enabled = false;
         }
-        originalScale = ourTarget.transform.localScale;
-        originalColor = ourTarget.color;
+        SetOriginalScale(ourTarget.transform.localScale);
+        SetOriginalColour(ourTarget.color);
     }
     public override void UpdateTargetScale(Vector3 newScale)
     {
@@ -44,10 +44,11 @@ public class UI_Image_ScaleAndColour : UI_ScaleAndColour
 
     public override void OnDisable_Inheritance()
     {
-        ourTarget.color = originalColor;
+        ourTarget.color = giveOriginalColour();
     }
     public override void OnEnable_Inheritance()
     {
 
     }
+
 }
