@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [Header("ITEM AND INVENTORY")]
-    public Canvas ourInventoryCanvas;
+    public GameObject ourInventoryCanvas;
     public Image itemInHand;
     public Image itemInHand_cooldown;
 
@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        ourInventoryCanvas.enabled = false;
+        ourInventoryCanvas.SetActive(false);
         Selected_Description.text = "";
         foreach (InventoryCell foundcell in ourInventoryCells)
         {
@@ -100,7 +100,7 @@ public class Inventory : MonoBehaviour
 
     public void InventoryCall()
     {
-        if (ourInventoryCanvas.enabled == false)
+        if (ourInventoryCanvas.activeSelf == false)
         {
             GameManager.Instance.currentGameSate = GameManager.gamestate.Inventory;
         }
@@ -109,7 +109,7 @@ public class Inventory : MonoBehaviour
             GameManager.Instance.currentGameSate = GameManager.gamestate.Gameplay;
         }
 
-        ourInventoryCanvas.enabled = !ourInventoryCanvas.enabled;
+        ourInventoryCanvas.SetActive(!ourInventoryCanvas.activeSelf);
         RefreshInventory();
     }
 
@@ -123,7 +123,7 @@ public class Inventory : MonoBehaviour
 
             foreach(InventoryCell foundcell in ourInventoryCells)
             {
-                foundcell.GetComponent<Selectable>().enabled = ourInventoryCanvas.enabled;
+                foundcell.GetComponent<Selectable>().enabled = ourInventoryCanvas.activeSelf;
             }
     }
 

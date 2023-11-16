@@ -6,6 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+
+    public enum AnyThing { dragon, fire, terminator}
+    public AnyThing thing;
     public enum gamestate { Gameplay, Menu, GameOver, Inventory}
     public gamestate currentGameSate = gamestate.Gameplay;
     public int Time_Hour = 18;
