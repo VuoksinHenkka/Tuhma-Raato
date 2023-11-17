@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class gameSpawnZombies : MonoBehaviour
 {
     private float spawnFrequency = 40;
-    private int spawnAmount = 1;
+    private int spawnAmount = 3;
     public GameObject Zombie_Basic;
     public List<Transform> spawnPositions;
     private float currenttime = 0;
@@ -36,7 +36,7 @@ public class gameSpawnZombies : MonoBehaviour
         {
             SpawnZombies();
         }
-        if (spawnAmount < 5) spawnAmount++;
+        if (spawnAmount < 10) spawnAmount++;
     }
 
     private void SpawnZombies()

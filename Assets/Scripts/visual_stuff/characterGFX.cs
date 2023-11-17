@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +8,9 @@ public class characterGFX : MonoBehaviour
     public Animator ourAnimator;
     public float ourMoveVelocity = 0;
 
+
+    public float leanAngle = 40f; 
+    public float leanSmoothness = 5f;
 
     private void Awake()
     {
@@ -23,8 +25,13 @@ public class characterGFX : MonoBehaviour
             transform.LookAt(new Vector3(LookToDirection_override.x, transform.position.y, LookToDirection_override.z), Vector3.up);
             return;
         }
-        transform.LookAt(new Vector3(LookToDirection.x, transform.position.y, LookToDirection.z), Vector3.up);
 
         if (ourAnimator) ourAnimator.SetFloat("Velocity", ourMoveVelocity);
+        //smoothly rotate towards direction
+        if ((LookToDirection - transform.position) == Vector3.zero) return;
+        Quaternion lookDirection = Quaternion.LookRotation(LookToDirection - transform.position);
+
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookDirection, Time.deltaTime * 5f);
     }
 }

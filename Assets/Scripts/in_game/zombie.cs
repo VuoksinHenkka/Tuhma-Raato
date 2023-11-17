@@ -59,6 +59,7 @@ public class zombie : enemy, IHaveName
             if (UpdateCycleForMoveTargets_Current < UpdateCycleForMoveTargets_Target) UpdateCycleForMoveTargets_Current += 1 * Time.deltaTime;
             else
             {
+
                 if (currentMovementType == MovementType.chaotic) UpdateCycleForMoveTargets_Target = Random.Range(1f, 3);
                 else UpdateCycleForMoveTargets_Target = 0.1f;
                 UpdateCycleForMoveTargets_Current = 0;
@@ -67,6 +68,7 @@ public class zombie : enemy, IHaveName
 
                 if (currentMovementType == MovementType.straight) ourAgent.SetDestination(GameManager.Instance.ref_Player.transform.position);
                 else ourAgent.SetDestination(GameManager.Instance.ref_Player.transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)));
+                       
             }
 
 

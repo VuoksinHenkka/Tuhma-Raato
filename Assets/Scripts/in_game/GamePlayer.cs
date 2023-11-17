@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GamePlayer : MonoBehaviour
 {
-    private float MoveSpeed_Run = 8;
-    private float MoveSpeed_Walk = 3;
+    private float MoveSpeed_Run = 5;
+    private float MoveSpeed_Walk = 2;
 
     public bool Running = false;
     public float MoveSpeed = 0;
@@ -14,11 +14,13 @@ public class GamePlayer : MonoBehaviour
     public CharacterController ourCharacterController;
     public characterGFX ourcharacterGFX;
 
+    private float movespeed_current = 0;
 
     private void Awake()
     {
         ourCharacterController = GetComponent<CharacterController>();
     }
+
     void Start()
     {
         GameManager.Instance.ref_Player = this;
@@ -38,12 +40,19 @@ public class GamePlayer : MonoBehaviour
         MoveVector_FromInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 MoveVector_Final = (GameManager.Instance.ref_Camera.moveTransform.right * MoveVector_FromInput.x) + (GameManager.Instance.ref_Camera.moveTransform.forward * MoveVector_FromInput.z);
 
-        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-5 * Time.deltaTime);
+        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-1 * Time.deltaTime);
         else GameManager.Instance.ref_Stats.Stamina_Modify(0.5f * Time.deltaTime);
-        ourCharacterController.Move(MoveVector_Final * (MoveSpeed*Time.deltaTime));
+        ourCharacterController.Move(MoveVector_Final * (MoveSpeed * Time.deltaTime));
 
-        if (ourcharacterGFX) ourcharacterGFX.LookToDirection = transform.position + MoveVector_Final;
-
+        
+        if (ourcharacterGFX)
+        {
+            ourcharacterGFX.LookToDirection = transform.position + MoveVector_Final;
+            float targetmovespeed = ourCharacterController.velocity.magnitude;
+            if (movespeed_current < targetmovespeed) movespeed_current = Mathf.Clamp(movespeed_current += 15f * Time.deltaTime,0, targetmovespeed);
+            else if (movespeed_current > targetmovespeed) movespeed_current = Mathf.Clamp(movespeed_current -= 15f * Time.deltaTime, targetmovespeed, 10);
+            ourcharacterGFX.ourMoveVelocity = movespeed_current;
+        }
 
     }
 }
