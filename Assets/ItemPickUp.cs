@@ -5,6 +5,13 @@ using UnityEngine;
 public class ItemPickUp : ItemReceiver, IHaveName, IHaveLimitedUseRange
 {
     public ItemDefiner ourItem;
+    public bool Spawned = false;
+
+
+    private void OnEnable()
+    {
+        Spawned = true;
+    }
 
 
     public string GiveName()

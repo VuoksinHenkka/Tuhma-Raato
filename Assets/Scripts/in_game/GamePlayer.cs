@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GamePlayer : MonoBehaviour
 {
-    private float MoveSpeed_Run = 5;
+    private float MoveSpeed_Run = 7;
     private float MoveSpeed_Walk = 2;
 
     public bool Running = false;
@@ -40,7 +40,7 @@ public class GamePlayer : MonoBehaviour
         MoveVector_FromInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 MoveVector_Final = (GameManager.Instance.ref_Camera.moveTransform.right * MoveVector_FromInput.x) + (GameManager.Instance.ref_Camera.moveTransform.forward * MoveVector_FromInput.z);
 
-        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-1 * Time.deltaTime);
+        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-2 * Time.deltaTime);
         else GameManager.Instance.ref_Stats.Stamina_Modify(0.5f * Time.deltaTime);
         ourCharacterController.Move(MoveVector_Final * (MoveSpeed * Time.deltaTime));
 
@@ -54,5 +54,9 @@ public class GamePlayer : MonoBehaviour
             ourcharacterGFX.ourMoveVelocity = movespeed_current;
         }
 
+        if (transform.position.y != 1.1f)
+        {
+            transform.position = new Vector3(transform.position.x, 1.1f, transform.position.z);
+        }
     }
 }

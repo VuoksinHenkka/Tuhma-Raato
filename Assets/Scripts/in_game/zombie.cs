@@ -20,6 +20,12 @@ public class zombie : enemy, IHaveName
     private string ourName = "Zombie";
     private int HP = 10;
 
+
+
+    private OffMeshLinkData ourMeshLinkData;
+    public bool AnimationLaunched_Hurdle = false;
+    private int Hurdle_NavMeshLayer = 0;
+
     public override string GiveName()
     {
         return ourName;
@@ -34,8 +40,9 @@ public class zombie : enemy, IHaveName
         ourAgent.avoidancePriority = Random.Range(30, 60);
         MoveSpeed = Random.Range(1, 7);
         PickRandomMovePattern();
-        MoveSpeedTarget = Random.Range(0.5f, 7);
+        MoveSpeedTarget = Random.Range(0.5f, 9);
         MoveSpeed = MoveSpeedTarget;
+        Hurdle_NavMeshLayer = NavMesh.GetAreaFromName("Hurdle");
     }
 
     private void PickRandomMovePattern()
@@ -45,6 +52,7 @@ public class zombie : enemy, IHaveName
         else currentMovementType = MovementType.chaotic;
     }
 
+
     private void Update()
     {
         if (interestedInPlayer)
@@ -53,18 +61,24 @@ public class zombie : enemy, IHaveName
             currentDistanceToPlayer = DistanceToPlayer();
             MoveSpeed = Mathf.Lerp(MoveSpeed, MoveSpeedTarget, 1f * Time.deltaTime);
 
-            if (currentDistanceToPlayer > 30) ourAgent.speed = MoveSpeed * 2;
+            if (currentDistanceToPlayer > 50) ourAgent.speed = 8f;
             else ourAgent.speed = MoveSpeed;
+            
            
             if (UpdateCycleForMoveTargets_Current < UpdateCycleForMoveTargets_Target) UpdateCycleForMoveTargets_Current += 1 * Time.deltaTime;
             else
             {
+                if (currentDistanceToPlayer < 10)
+                {
+                    int RandomChance = Random.Range(0, 10);
+                    if (RandomChance == 0) AudioManager.Instance.SFX_ZombieYell();
+                }
 
                 if (currentMovementType == MovementType.chaotic) UpdateCycleForMoveTargets_Target = Random.Range(1f, 3);
                 else UpdateCycleForMoveTargets_Target = 0.1f;
                 UpdateCycleForMoveTargets_Current = 0;
                 PickRandomMovePattern();
-                MoveSpeedTarget = Random.Range(0.5f, 7);
+                MoveSpeedTarget = Random.Range(0.5f, 4);
 
                 if (currentMovementType == MovementType.straight) ourAgent.SetDestination(GameManager.Instance.ref_Player.transform.position);
                 else ourAgent.SetDestination(GameManager.Instance.ref_Player.transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)));
@@ -86,6 +100,28 @@ public class zombie : enemy, IHaveName
         }
 
         ourcharacterGFX.ourMoveVelocity = ourAgent.velocity.magnitude;
+
+        if (currentDistanceToPlayer < 30) NavMeshLayerReactions();
+
+    }
+
+    private void NavMeshLayerReactions()
+    {
+
+        if (ourAgent.isOnOffMeshLink)
+        {
+            if (ourAgent.currentOffMeshLinkData.offMeshLink.area == Hurdle_NavMeshLayer)
+            {
+                print("in hurdle area");
+                if (AnimationLaunched_Hurdle == false)
+                {
+                    ourcharacterGFX.ourAnimator.SetTrigger("Hurdle");
+                    AnimationLaunched_Hurdle = true;
+                }
+            }
+        }
+
+        else AnimationLaunched_Hurdle = false;
     }
 
     private float DistanceToPlayer()

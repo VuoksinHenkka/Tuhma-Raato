@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public gamestate currentGameSate = gamestate.Gameplay;
     public int Time_Hour = 18;
     public float Time_Minute = 0;
-    private float ClockSpeed = 1f;
+    private float ClockSpeed = 1.25f;
     public float GameSpeed = 1;
     public float cooldownTimer = 0;
     public float MaxCooldown = 1;
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             }
             ourSun_colour_lerpTarget = UpdateSunColour();
             ourSun.color = Color.Lerp(ourSun.color, ourSun_colour_lerpTarget, 0.1f * Time.deltaTime);
-            ref_Camera.ourCamera.backgroundColor = ourSun.color * 1.01f;
+            //ref_Camera.ourCamera.backgroundColor = ourSun.color * 0.5f;
         }
 
         if (ref_Stats)
