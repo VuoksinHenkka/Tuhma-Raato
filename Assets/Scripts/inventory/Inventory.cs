@@ -20,13 +20,19 @@ public class Inventory : MonoBehaviour
     public Canvas ourStatsCanvas;
     private float currentHP_magnitude = 1;
     private float currentStamina_magnitude = 1;
+    private float currentSanity_magnitude = 1;
+
     public float currentHP = -1;
     public float currentStamine = -1;
+    public float currentSanity = -1;
+
     public TMP_Text HP_text;
     public TMP_Text Stamina_text;
     public Image HP_RadialFill;
     public Image Stamina_RadialFill;
 
+    public TMP_Text Sanity_text;
+    public Image Sanity_RadialFill;
 
 
     private void Awake()
@@ -53,6 +59,7 @@ public class Inventory : MonoBehaviour
 
         currentHP_magnitude = Mathf.InverseLerp(0, 100, GameManager.Instance.ref_Stats.HP);
         currentStamina_magnitude = Mathf.InverseLerp(0, 100, GameManager.Instance.ref_Stats.Stamina);
+        currentSanity_magnitude = Mathf.InverseLerp(0, 100, GameManager.Instance.ref_Stats.Sanity);
 
         if (currentHP != currentHP_magnitude)
         {
@@ -71,6 +78,16 @@ public class Inventory : MonoBehaviour
             if (currentStamine > 0.75 && Stamina_RadialFill.color != Color.green) Stamina_RadialFill.color = Color.green;
             else if (currentStamine > 0.25 && currentStamine <= 0.75 && Stamina_RadialFill.color != Color.yellow) Stamina_RadialFill.color = Color.yellow;
             else if (currentStamine <= 0.25 && Stamina_RadialFill.color != Color.red) Stamina_RadialFill.color = Color.red;
+        }
+
+        if (currentSanity != currentSanity_magnitude)
+        {
+            currentSanity = currentSanity_magnitude;
+            Sanity_RadialFill.fillAmount = currentSanity;
+            Sanity_text.text = GameManager.Instance.ref_Stats.Sanity.ToString("000");
+            if (currentSanity > 0.75 && Sanity_RadialFill.color != Color.green) Sanity_RadialFill.color = Color.green;
+            else if (currentSanity > 0.25 && currentSanity <= 0.75 && Sanity_RadialFill.color != Color.yellow) Sanity_RadialFill.color = Color.yellow;
+            else if (currentSanity <= 0.25 && Sanity_RadialFill.color != Color.red) Sanity_RadialFill.color = Color.red;
 
 
         }
@@ -129,7 +146,7 @@ public class Inventory : MonoBehaviour
 
     public void ShowDescription(InventoryCell toDescribe)
     {
-       Selected_Description.text = toDescribe.ourItem.Description;
+       Selected_Description.text = (toDescribe.ourItem.Name.ToUpper() + ". " +toDescribe.ourItem.Description);
     }
 
     public void SelectCell(InventoryCell toSelect)
@@ -150,6 +167,8 @@ public class Inventory : MonoBehaviour
         ItemDefiner consumeparameters = toConsume.ourItem;
         GameManager.Instance.ref_Stats.HP_Modify(consumeparameters.GiveHealth);
         GameManager.Instance.ref_Stats.Stamina_Modify(consumeparameters.GiveStamina);
+        GameManager.Instance.ref_Stats.Sanity_Modify(consumeparameters.GiveSanity);
+
         int i = toConsume.ourIndex;
         GameManager.Instance.ref_ItemSolver.PlayerItems[i] = GameManager.Instance.ref_ItemSolver.emptyItem;
         RefreshInventory();

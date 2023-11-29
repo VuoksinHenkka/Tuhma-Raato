@@ -11,10 +11,11 @@ public class GameManager : MonoBehaviour
     public AnyThing thing;
     public enum gamestate { Gameplay, Menu, GameOver, Inventory}
     public gamestate currentGameSate = gamestate.Gameplay;
-    public int Time_Hour = 20;
+    public int Time_Hour = 19;
     public float Time_Minute = 0;
     private float ClockSpeed = 1.25f;
     public float GameSpeed = 1;
+    public float GameSpeedInsanityModifier = 0;
     public float cooldownTimer = 0;
     public float MaxCooldown = 1;
     public Light ourSun;
@@ -28,8 +29,9 @@ public class GameManager : MonoBehaviour
     public GameCamera ref_Camera;
     public GamePlayer ref_Player;
 
+    public int PlayersLightAmount = 0;
 
-    //peli alkaa klo 20 ja loppuu klo 6.00
+    //peli alkaa klo 19 ja loppuu klo 6.00
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -55,9 +57,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.SpeedUpGame) GameSpeedInsanityModifier = 1;
+        else GameSpeedInsanityModifier = 0;
+
         if (currentGameSate == gamestate.Menu) Time.timeScale = 0;
-        else if (currentGameSate == gamestate.Inventory) Time.timeScale = 0.25f;
-        else Time.timeScale = GameSpeed;
+        else if (currentGameSate == gamestate.Inventory) Time.timeScale = 0.25f + GameSpeedInsanityModifier;
+        else Time.timeScale = GameSpeed + GameSpeedInsanityModifier;
         if (currentGameSate == gamestate.Gameplay)
         {
             if (Time_Minute != 60) Time_Minute = Mathf.Clamp(Time_Minute += ClockSpeed * Time.deltaTime, 0, 60);
@@ -76,11 +81,33 @@ public class GameManager : MonoBehaviour
         {
             if (ref_Stats.HP == 0) GameOver();
         }
+
+        if (Time_Hour > 5 && Time_Hour < 8) ref_Stats.Sanity_ItsNight = false;
+        else if (Time_Hour > 12 && Time_Hour < 21) ref_Stats.Sanity_ItsNight = false;
+        else ref_Stats.Sanity_ItsNight = true;
+
+
+        if (ref_Stats.Sanity_ItsNight)
+        {
+            if (PlayersLightAmount == 0) ref_Stats.Sanity_Modify(-(1 * Time.deltaTime));
+            else ref_Stats.Sanity_Modify(2 * Time.deltaTime);
+        }
+
+        if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatHP) ref_Stats.HP_Modify(-3 * Time.deltaTime);
+        if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatStamina) ref_Stats.Stamina_Modify(-4 * Time.deltaTime);
+
+    }
+
+    public void ModifyPlayersLightAmount(int byAmount)
+    {
+        print("modify player light by " + byAmount);
+        PlayersLightAmount = PlayersLightAmount + byAmount;
+        if (PlayersLightAmount < 0) PlayersLightAmount = 0;
     }
 
     private Color UpdateSunColour()
     {
-        if (Time_Hour > 17) //pelin alku, peli alkaa klo 20
+        if (Time_Hour > 17) //pelin alku, peli alkaa klo 19
         {
             return ourSun_colour_beforemidnight.Evaluate(Mathf.InverseLerp(18,23, Time_Hour));
         }

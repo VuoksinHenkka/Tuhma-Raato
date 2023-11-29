@@ -37,7 +37,8 @@ public class GamePlayer : MonoBehaviour
         else MoveSpeed = MoveSpeed_Walk;
 
 
-        MoveVector_FromInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if (GameManager.Instance.ref_Stats.CurrentInsanityFX == Stats.InsanityFX.InvertControls) MoveVector_FromInput = new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
+        else MoveVector_FromInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 MoveVector_Final = (GameManager.Instance.ref_Camera.moveTransform.right * MoveVector_FromInput.x) + (GameManager.Instance.ref_Camera.moveTransform.forward * MoveVector_FromInput.z);
 
         if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-3 * Time.deltaTime);
@@ -58,5 +59,6 @@ public class GamePlayer : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 1.1f, transform.position.z);
         }
+
     }
 }

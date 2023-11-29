@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 5905479177642008882, guid: ac2c1528341ac41bf98a723b652eb45b,
         type: 3}
       propertyPath: m_Name
-      value: cheap_licquorice
+      value: cheap_waterbottle
       objectReference: {fileID: 0}
     - target: {fileID: 5905479177642008882, guid: ac2c1528341ac41bf98a723b652eb45b,
         type: 3}
@@ -72,7 +72,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ourItem
       value: 
-      objectReference: {fileID: 11400000, guid: ecac8644db93a434db9523c1d910026a,
+      objectReference: {fileID: 11400000, guid: 7ee7e9aae23a8423d8a6e6acb723c424,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: W_Knife
   m_EditorClassIdentifier: 
   itemType: 0
-  Name: Butter knife
+  Name: Knife
   ActionCoolDown: 1
   SendRange: 5
   Description: Fast and lightweight. 1 DMG. Consumes 3 Stamina
