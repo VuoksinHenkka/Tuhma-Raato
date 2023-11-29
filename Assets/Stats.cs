@@ -84,7 +84,8 @@ public class Stats : MonoBehaviour
                 CurrentInsanityFX = InsanityFX.EatStamina;
                 break;
         }
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(15f);
+        CurrentInsanityFX = InsanityFX.None;
 
     }
 }

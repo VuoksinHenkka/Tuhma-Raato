@@ -73,6 +73,8 @@ MonoBehaviour:
       m_Calls: []
   spawnDamageMessage: 1
   ourName: Supply Crate
+  WhatWeSpawn: 0
+  SpawnPositions: []
   myAnimator: {fileID: 0}
   OpenWithItems:
   - {fileID: 11400000, guid: 2ddcf9f3b0d914e66bc3b21b25c05672, type: 2}
@@ -145,7 +147,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: c49c740d778a0cf44a5cfd631acd5d99, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

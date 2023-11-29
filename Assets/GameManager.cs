@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour
 
         if (ref_Stats.Sanity_ItsNight)
         {
-            if (PlayersLightAmount == 0) ref_Stats.Sanity_Modify(-(1 * Time.deltaTime));
-            else ref_Stats.Sanity_Modify(2 * Time.deltaTime);
+            if (PlayersLightAmount == 0) ref_Stats.Sanity_Modify(-(2 * Time.deltaTime));
+            else ref_Stats.Sanity_Modify(1 * Time.deltaTime);
         }
 
         if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatHP) ref_Stats.HP_Modify(-3 * Time.deltaTime);
