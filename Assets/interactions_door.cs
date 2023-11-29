@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +10,7 @@ public class interactions_door : InteractionsTarget
     public Animator ourAnimator;
     public UnityEvent OnUse;
     public bool isLocked = false;
-
+    public GameObject NavMeshCarve;
     private void Awake()
     {
         int ourRandom = Random.Range(0, 2);
@@ -36,5 +37,11 @@ public class interactions_door : InteractionsTarget
 
             }
         }
+    }
+
+    private void Update()
+    {
+        if (isLocked && NavMeshCarve.activeSelf == false) NavMeshCarve.SetActive(true);
+        else if (isLocked == false && NavMeshCarve.activeSelf == true) NavMeshCarve.SetActive(false);
     }
 }

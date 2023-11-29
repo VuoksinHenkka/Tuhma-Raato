@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public AnyThing thing;
     public enum gamestate { Gameplay, Menu, GameOver, Inventory}
     public gamestate currentGameSate = gamestate.Gameplay;
-    public int Time_Hour = 18;
+    public int Time_Hour = 20;
     public float Time_Minute = 0;
     private float ClockSpeed = 1.25f;
     public float GameSpeed = 1;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public GamePlayer ref_Player;
 
 
-    //peli alkaa klo 18 ja loppuu klo 8.00
+    //peli alkaa klo 20 ja loppuu klo 6.00
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     private Color UpdateSunColour()
     {
-        if (Time_Hour > 17) //pelin alku
+        if (Time_Hour > 17) //pelin alku, peli alkaa klo 20
         {
             return ourSun_colour_beforemidnight.Evaluate(Mathf.InverseLerp(18,23, Time_Hour));
         }

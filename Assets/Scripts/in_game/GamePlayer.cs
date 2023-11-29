@@ -40,7 +40,7 @@ public class GamePlayer : MonoBehaviour
         MoveVector_FromInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 MoveVector_Final = (GameManager.Instance.ref_Camera.moveTransform.right * MoveVector_FromInput.x) + (GameManager.Instance.ref_Camera.moveTransform.forward * MoveVector_FromInput.z);
 
-        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-2 * Time.deltaTime);
+        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-3 * Time.deltaTime);
         else GameManager.Instance.ref_Stats.Stamina_Modify(0.5f * Time.deltaTime);
         ourCharacterController.Move(MoveVector_Final * (MoveSpeed * Time.deltaTime));
 

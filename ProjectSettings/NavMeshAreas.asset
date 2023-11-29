@@ -12,9 +12,9 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: Hurdle
+    cost: 3
+  - name: Doors
     cost: 2
-  - name: 
-    cost: 1
   - name: 
     cost: 1
   - name: 
