@@ -59,7 +59,7 @@ public class interaction_target_container : InteractionsTarget
             else GameManager.Instance.ref_Stats.Stamina_Modify(-_interactWith.StaminaConsumption);
         }
 
-        myAnimator.SetBool("Open", true);
+        if (myAnimator)myAnimator.SetBool("Open", true);
         Opened = true;
         foreach(Transform SpawnPosition in SpawnPositions)
         {
