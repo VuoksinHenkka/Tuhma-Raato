@@ -14,7 +14,15 @@ public class Stats : MonoBehaviour
     public bool Sanity_ItsNight = false;
     public List<string> insanityMessages;
 
-    
+
+
+    public delegate void OnHurt();
+    public event    OnHurt onHurt;
+
+
+
+
+
     private void Start()
     {
         GameManager.Instance.ref_Stats = this;
@@ -28,8 +36,15 @@ public class Stats : MonoBehaviour
         if (amount < 0) GameManager.Instance.ref_messagespawner.SpawnMessage(Mathf.RoundToInt(amount).ToString(), Color.red, GameManager.Instance.ref_Player.transform.position);
         if (amount > 0) GameManager.Instance.ref_messagespawner.SpawnMessage(Mathf.RoundToInt(amount).ToString(), Color.green, GameManager.Instance.ref_Player.transform.position);
 
-    }
+        if (onHurt != null) onHurt.Invoke();
 
+    }
+    public void HP_ModifyNoMessage(float amount)
+    {
+        HP += amount;
+        if (HP < 0) HP = 0;
+        if (HP > 100) HP = 100;
+    }
     public void Stamina_Modify(float amount)
     {
         Stamina += amount;

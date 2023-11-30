@@ -31,6 +31,13 @@ public class GameManager : MonoBehaviour
 
     public int PlayersLightAmount = 0;
 
+
+
+
+
+
+
+
     //peli alkaa klo 19 ja loppuu klo 6.00
 
     private static GameManager _instance;
@@ -93,7 +100,7 @@ public class GameManager : MonoBehaviour
             else ref_Stats.Sanity_Modify(1 * Time.deltaTime);
         }
 
-        if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatHP) ref_Stats.HP_Modify(-3 * Time.deltaTime);
+        if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatHP) ref_Stats.HP_ModifyNoMessage(-3 * Time.deltaTime);
         if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatStamina) ref_Stats.Stamina_Modify(-4 * Time.deltaTime);
 
     }

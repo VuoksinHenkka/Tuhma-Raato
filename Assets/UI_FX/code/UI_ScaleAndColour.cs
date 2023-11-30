@@ -241,6 +241,13 @@ public class UI_ScaleAndColour : MonoBehaviour
         Call_ModifyColor();
         Call_ModifyScale();
     }
+
+    [ContextMenu("DEBUG_CallModifyBoth")]
+    public void Call_ModifyBothIFnotActive()
+    {
+       if(OnUpdate_Color == false) Call_ModifyColor();
+       if(OnUpdate_Scale == false) Call_ModifyScale();
+    }
     [ContextMenu("DEBUG_CallColorModify")]
     public void Call_ModifyColor()
     {

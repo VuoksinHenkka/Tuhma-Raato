@@ -17,7 +17,7 @@ public class ItemDefiner : ScriptableObject
     public int GiveHealth = 0;
     public int GiveStamina = 0;
     public int GiveSanity = 0;
-
+    public Texture ourTexture;
     [Header("AUDIOVISUALS")]
     public Sprite Icon;
 
