@@ -14,7 +14,7 @@ public class interaction_target_container : InteractionsTarget
     public bool Opened = false;
     public bool ConsumeStamina = false;
     public int ChanceOfDisappearing = 0;
-
+    public string InteractionAnimation = "Interact";
     private void Awake()
     {
         if(ChanceOfDisappearing != 0)
@@ -26,6 +26,7 @@ public class interaction_target_container : InteractionsTarget
 
     public override void Receive(ItemDefiner _interactWith)
     {
+        GameManager.Instance.ref_Player.ourcharacterGFX.TriggerAnimation(InteractionAnimation);
         if (Opened) return;
 
         if (OpenWithAnything)

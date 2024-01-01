@@ -12,6 +12,12 @@ public class characterGFX : MonoBehaviour
     public float leanAngle = 40f; 
     public float leanSmoothness = 5f;
 
+
+    public void TriggerAnimation(string triggername)
+    {
+        if (ourAnimator) ourAnimator.SetTrigger(triggername);
+    }
+
     private void Awake()
     {
         if (ourAnimator) ourAnimator.SetFloat("Offset", Random.Range(0, 2f));
@@ -23,6 +29,7 @@ public class characterGFX : MonoBehaviour
         if (LookToDirection_override != Vector3.zero)
         {
             transform.LookAt(new Vector3(LookToDirection_override.x, transform.position.y, LookToDirection_override.z), Vector3.up);
+            if (ourAnimator) ourAnimator.SetFloat("Velocity", ourMoveVelocity);
             return;
         }
 
