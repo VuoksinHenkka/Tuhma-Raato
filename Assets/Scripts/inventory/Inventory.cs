@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
 {
     [Header("ITEM AND INVENTORY")]
     public GameObject ourInventoryCanvas;
+    public Canvas ourInventoryCanvas_Canvas;
+
     public Image itemInHand;
     public Image itemInHand_cooldown;
 
@@ -52,6 +54,22 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.currentGameSate != GameManager.gamestate.Gameplay && GameManager.Instance.currentGameSate != GameManager.gamestate.Inventory)
+        {
+            if (ourInventoryCanvas_Canvas.enabled)
+            {
+                ourInventoryCanvas_Canvas.enabled = false;
+                ourStatsCanvas.enabled = false;
+            }
+            return;
+        }
+        else
+        {
+            if (ourInventoryCanvas_Canvas.enabled == false) ourInventoryCanvas_Canvas.enabled = true;
+             if (ourStatsCanvas.enabled == false)  ourStatsCanvas.enabled = true;
+        }
+
+
         itemInHand_cooldown.fillAmount = Mathf.InverseLerp(0, GameManager.Instance.MaxCooldown, GameManager.Instance.cooldownTimer);
         //STAT STUFF
         if (GameManager.Instance.currentGameSate == GameManager.gamestate.Menu && ourStatsCanvas.enabled) ourStatsCanvas.enabled = false;

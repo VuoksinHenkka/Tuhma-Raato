@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
 
 
-    public enum AnyThing { dragon, fire, terminator}
-    public AnyThing thing;
     public enum gamestate { Gameplay, Menu, GameOver, Inventory}
     public gamestate currentGameSate = gamestate.Gameplay;
     public int Time_Hour = 19;
@@ -32,8 +30,8 @@ public class GameManager : MonoBehaviour
     public int PlayersLightAmount = 0;
 
 
-
-
+    public MainMenu ourMainMenu;
+    public StoryBeat ourStoryBeats;
 
 
 
@@ -54,6 +52,9 @@ public class GameManager : MonoBehaviour
     {
         if (_instance == null) _instance = this;
         else Destroy(this);
+
+        ourMainMenu.gameObject.SetActive(true);
+        currentGameSate = gamestate.Menu;
     }
 
     private void Start()
@@ -86,7 +87,7 @@ public class GameManager : MonoBehaviour
 
         if (ref_Stats)
         {
-            if (ref_Stats.HP == 0) GameOver();
+            if (ref_Stats.HP == 0) Game_GameOver();
         }
 
         if (Time_Hour > 5 && Time_Hour < 8) ref_Stats.Sanity_ItsNight = false;
@@ -102,6 +103,15 @@ public class GameManager : MonoBehaviour
 
         if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatHP) ref_Stats.HP_ModifyNoMessage(-3 * Time.deltaTime);
         if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatStamina) ref_Stats.Stamina_Modify(-4 * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+           if(currentGameSate == gamestate.Gameplay)
+            {
+                ourMainMenu.gameObject.SetActive(true);
+                currentGameSate = gamestate.Menu;
+            }
+        }
 
     }
 
@@ -130,11 +140,34 @@ public class GameManager : MonoBehaviour
         Time_Hour++;
         if (Time_Hour > 23) Time_Hour = 0;
 
-        if (Time_Hour == 8) GameOver();
+        if (Time_Hour == 8) Game_GameOver();
     }
     
-    private void GameOver()
+    public void Game_GameOver()
     {
         print("GAME OVER");
+    }
+
+    public void Game_Resume()
+    {
+        currentGameSate = gamestate.Gameplay;
+    }
+
+    public void Game_Quit()
+    {
+        Application.Quit();
+    }
+
+    public void Game_NewGame()
+    {
+        Time_Hour = 19;
+        Time_Minute = 0;
+        ClockSpeed = 1.25f;
+        GameSpeed = 1;
+        GameSpeedInsanityModifier = 0;
+        cooldownTimer = 0;
+        MaxCooldown = 1;
+        ourSun.color = ourSun_colour_beforemidnight.Evaluate(0);
+        ourStoryBeats.Open_Intro();
     }
 }

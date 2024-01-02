@@ -73,6 +73,8 @@ public class UI_Selectable : Selectable, IPointerEnterHandler, IPointerExitHandl
     private void SetNewImageColor(Color toSet)
     {
         StopAllCoroutines();
+        if (gameObject.activeInHierarchy == false) return;
+
         StartCoroutine(TransitionColourTo(toSet));
     }
 
@@ -107,6 +109,8 @@ public class UI_Selectable : Selectable, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (gameObject.activeInHierarchy == false) return;
+
         if (interactable == false) return;
        if (OnFocusModifySize) transform.localScale = selectedSize;
         if (OnFocusMakeSound) MakeSoundFocus();
@@ -116,7 +120,9 @@ public class UI_Selectable : Selectable, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerExit(PointerEventData eventData)
     {
-      if (OnFocusModifySize)  transform.localScale = originalSize;
+        if (gameObject.activeInHierarchy == false) return;
+
+        if (OnFocusModifySize)  transform.localScale = originalSize;
         OnUnfocus.Invoke();
         SetNewImageColor(colors.normalColor * colors.colorMultiplier);
         buttonPressed = false;
@@ -124,6 +130,7 @@ public class UI_Selectable : Selectable, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (gameObject.activeInHierarchy == false) return;
         if (interactable == false) return;
         if (buttonPressed == false)
         {
@@ -136,16 +143,22 @@ public class UI_Selectable : Selectable, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (gameObject.activeInHierarchy == false) return;
+
         buttonPressed = false;
     }
 
     public void MakeSoundFocus()
     {
-       if (ourAudioSource) ourAudioSource.PlayOneShot(OnSelectSound);
+        if (gameObject.activeInHierarchy == false) return;
+
+        if (ourAudioSource) ourAudioSource.PlayOneShot(OnSelectSound);
     }
 
     public void MakeSoundPress()
     {
+        if (gameObject.activeInHierarchy == false) return;
+
         if (ourAudioSource) ourAudioSource.PlayOneShot(OnPressSound);
     }
 
