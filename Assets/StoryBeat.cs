@@ -10,6 +10,7 @@ public class StoryBeat : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.Instance.allowMovement = false;
         GameManager.Instance.currentGameSate = GameManager.gamestate.Menu;
 
     }
@@ -31,6 +32,8 @@ public class StoryBeat : MonoBehaviour
 
         gameObject.SetActive(true);
     }
+
+    [ContextMenu("Open_OnDeath")]
     public void Open_Death()
     {
         onIntro_objects.SetActive(false);

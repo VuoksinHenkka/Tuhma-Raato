@@ -45,6 +45,25 @@ public class zombie : enemy, IHaveName
         Hurdle_NavMeshLayer = NavMesh.GetAreaFromName("Hurdle");
     }
 
+    private void Start()
+    {
+        GameManager.Instance.onGameBegin += Clean;
+        GameManager.Instance.onGameOver += Clean;
+        GameManager.Instance.onGameEnding += Clean;
+    }
+
+    private void Clean()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.onGameBegin -= Clean;
+        GameManager.Instance.onGameOver -= Clean;
+        GameManager.Instance.onGameEnding -= Clean;
+    }
+
     private void PickRandomMovePattern()
     {
         float randomFloat = Random.Range(0, 2);

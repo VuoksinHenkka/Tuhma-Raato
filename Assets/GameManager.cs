@@ -28,13 +28,20 @@ public class GameManager : MonoBehaviour
     public GamePlayer ref_Player;
 
     public int PlayersLightAmount = 0;
-
+    public bool allowMovement = false;
 
     public MainMenu ourMainMenu;
     public StoryBeat ourStoryBeats;
 
 
+    public delegate void OnGameBegin();
+    public event OnGameBegin onGameBegin;
 
+    public delegate void OnGameOver();
+    public event OnGameOver onGameOver;
+
+    public delegate void OnGameEnding();
+    public event OnGameEnding onGameEnding;
 
     //peli alkaa klo 19 ja loppuu klo 6.00
 
@@ -140,17 +147,25 @@ public class GameManager : MonoBehaviour
         Time_Hour++;
         if (Time_Hour > 23) Time_Hour = 0;
 
-        if (Time_Hour == 8) Game_GameOver();
+        if (Time_Hour == 6) Game_Finished();
     }
     
-    public void Game_GameOver()
+    public void Game_Finished()
     {
-        print("GAME OVER");
+        if (onGameEnding != null) onGameEnding.Invoke();
+        ourStoryBeats.Open_Outro();
     }
 
     public void Game_Resume()
     {
         currentGameSate = gamestate.Gameplay;
+    }
+
+    public void Game_GameOver()
+    {
+        if(onGameOver != null)onGameOver.Invoke();
+        ourStoryBeats.Open_Death();
+
     }
 
     public void Game_Quit()
@@ -160,6 +175,7 @@ public class GameManager : MonoBehaviour
 
     public void Game_NewGame()
     {
+        if (onGameBegin != null) onGameBegin.Invoke();
         Time_Hour = 19;
         Time_Minute = 0;
         ClockSpeed = 1.25f;

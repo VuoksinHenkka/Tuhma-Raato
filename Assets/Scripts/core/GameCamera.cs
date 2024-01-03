@@ -29,7 +29,7 @@ public class GameCamera : MonoBehaviour
 
     public void Update()
     {
-        if (GameManager.Instance.currentGameSate == GameManager.gamestate.Gameplay) PlayerPosition_Dummy.position = Vector3.Lerp(PlayerPosition_Dummy.position, GameManager.Instance.ref_Player.transform.position, 4 * Time.deltaTime);
+        if (GameManager.Instance.currentGameSate == GameManager.gamestate.Gameplay) PlayerPosition_Dummy.position = Vector3.Lerp(PlayerPosition_Dummy.position, GameManager.Instance.ref_Player.transform.position, 4 * Time.unscaledDeltaTime);
         else PlayerPosition_Dummy.position = Vector3.Lerp(PlayerPosition_Dummy.position, (GameManager.Instance.ref_Player.transform.position + (Vector3.down*3)), 4 * Time.unscaledDeltaTime);
 
         playerPositionInScreenSpace = ourCamera.WorldToScreenPoint(PlayerPosition_Dummy.position);

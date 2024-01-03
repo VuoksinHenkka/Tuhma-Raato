@@ -17,11 +17,26 @@ public class interaction_target_container : InteractionsTarget
     public string InteractionAnimation = "Interact";
     private void Awake()
     {
-        if(ChanceOfDisappearing != 0)
+        GameManager.Instance.onGameBegin += Respawn;
+    }
+
+    public void Respawn()
+    {
+        Opened = false;
+        if (myAnimator) myAnimator.SetBool("Open", false);
+
+        if (ChanceOfDisappearing != 0)
         {
             int Chance = Random.Range(0, 101);
             if (Chance < ChanceOfDisappearing) gameObject.SetActive(false);
+            else gameObject.SetActive(true);
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.onGameBegin -= Respawn;
+
     }
 
     public override void Receive(ItemDefiner _interactWith)

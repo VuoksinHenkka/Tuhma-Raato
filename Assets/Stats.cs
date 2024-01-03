@@ -36,7 +36,7 @@ public class Stats : MonoBehaviour
         if (amount < 0) GameManager.Instance.ref_messagespawner.SpawnMessage(Mathf.RoundToInt(amount).ToString(), Color.red, GameManager.Instance.ref_Player.transform.position);
         if (amount > 0) GameManager.Instance.ref_messagespawner.SpawnMessage(Mathf.RoundToInt(amount).ToString(), Color.green, GameManager.Instance.ref_Player.transform.position);
 
-        if (onHurt != null) onHurt.Invoke();
+        if (amount < 0 && onHurt != null) onHurt.Invoke();
 
     }
     public void HP_ModifyNoMessage(float amount)
@@ -45,6 +45,7 @@ public class Stats : MonoBehaviour
         if (HP < 0) HP = 0;
         if (HP > 100) HP = 100;
     }
+
     public void Stamina_Modify(float amount)
     {
         Stamina += amount;
