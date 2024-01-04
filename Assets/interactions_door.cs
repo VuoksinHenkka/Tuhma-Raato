@@ -11,8 +11,19 @@ public class interactions_door : InteractionsTarget
     public UnityEvent OnUse;
     public bool isLocked = false;
     public GameObject NavMeshCarve;
-    private void Awake()
+
+    public void Start()
     {
+        GameManager.Instance.onGameBegin += Randomise;
+    }
+
+    public void OnDestroy()
+    {
+        if (GameManager.Instance) GameManager.Instance.onGameBegin -= Randomise;
+    }
+    private void Randomise()
+    {
+        ourAnimator.SetTrigger("Reset");
         int ourRandom = Random.Range(0, 2);
         if (ourRandom == 0) isLocked = false;
     }

@@ -15,7 +15,9 @@ public class interaction_target_container : InteractionsTarget
     public bool ConsumeStamina = false;
     public int ChanceOfDisappearing = 0;
     public string InteractionAnimation = "Interact";
-    private void Awake()
+
+
+    public void Start()
     {
         GameManager.Instance.onGameBegin += Respawn;
     }
@@ -35,7 +37,7 @@ public class interaction_target_container : InteractionsTarget
 
     private void OnDestroy()
     {
-        GameManager.Instance.onGameBegin -= Respawn;
+        if (GameManager.Instance) GameManager.Instance.onGameBegin -= Respawn;
 
     }
 

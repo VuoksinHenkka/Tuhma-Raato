@@ -10,7 +10,6 @@ public class StoryBeat : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.allowMovement = false;
         GameManager.Instance.currentGameSate = GameManager.gamestate.Menu;
 
     }

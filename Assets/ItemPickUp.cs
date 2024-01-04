@@ -8,6 +8,24 @@ public class ItemPickUp : ItemReceiver, IHaveName, IHaveLimitedUseRange
     public bool Spawned = false;
 
 
+    private void Start()
+    {
+        GameManager.Instance.onGameBegin += Respawn;
+    }
+
+    private void Respawn()
+    {
+        Spawned = false;
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+       if(GameManager.Instance) GameManager.Instance.onGameBegin -= Respawn;
+
+    }
+
+
     private void OnEnable()
     {
         Spawned = true;

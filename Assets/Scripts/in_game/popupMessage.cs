@@ -28,13 +28,14 @@ public class popupMessage : MonoBehaviour
     {
         ourText.text = Message;
         if(ourgradientFX) ourgradientFX.originalColor = colour;
-            else ourText.color = colour;
+        else ourText.color = colour;
     }
 
     private void Update()
     {
         if (!isActiveAndEnabled) return;
-
+        if (GameManager.Instance.currentGameSate != GameManager.gamestate.Gameplay && GameManager.Instance.currentGameSate != GameManager.gamestate.Inventory) ourCanvas.enabled = false;
+        else if (ourCanvas.enabled == false) ourCanvas.enabled = true;
         transform.Translate(Vector3.up * RandomSpeed * Time.deltaTime);
         if (currentlifetime > 0) currentlifetime -= 1 * Time.deltaTime;
         else gameObject.SetActive(false);

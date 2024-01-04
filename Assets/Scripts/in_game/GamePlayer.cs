@@ -16,6 +16,9 @@ public class GamePlayer : MonoBehaviour
     public List<Transform> spawnpositions;
     private float movespeed_current = 0;
 
+    private bool allowMovement = false;
+    private float bufferForMoving = 0.1f;
+
     private void Awake()
     {
         ourCharacterController = GetComponent<CharacterController>();
@@ -34,14 +37,30 @@ public class GamePlayer : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (GameManager.Instance == null) return;
         GameManager.Instance.onGameBegin -= Respawn;
 
     }
 
     private void Update()
     {
-        if (GameManager.Instance.currentGameSate != GameManager.gamestate.Gameplay) return;
-        if (GameManager.Instance.allowMovement == false) return;
+        if (GameManager.Instance.currentGameSate != GameManager.gamestate.Gameplay && GameManager.Instance.currentGameSate != GameManager.gamestate.Inventory)
+        {
+            if (allowMovement) allowMovement = false;
+        }
+
+        if (GameManager.Instance.currentGameSate == GameManager.gamestate.Gameplay && allowMovement == false)
+        {
+            if (allowMovement == false && bufferForMoving > 0) bufferForMoving -= 1* Time.deltaTime;
+            else
+            {
+                allowMovement = true;
+                bufferForMoving = 0.1f;
+            }
+        }
+
+        if (allowMovement == false) return;
+
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) Running = true;
         if (Input.GetKeyUp(KeyCode.LeftShift)) Running = false;
@@ -54,17 +73,17 @@ public class GamePlayer : MonoBehaviour
         else MoveVector_FromInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 MoveVector_Final = (GameManager.Instance.ref_Camera.moveTransform.right * MoveVector_FromInput.x) + (GameManager.Instance.ref_Camera.moveTransform.forward * MoveVector_FromInput.z);
 
-        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-3 * Time.unscaledDeltaTime);
-        else GameManager.Instance.ref_Stats.Stamina_Modify(0.5f * Time.unscaledDeltaTime);
-        ourCharacterController.Move(MoveVector_Final * (MoveSpeed * Time.unscaledDeltaTime));
+        if (MoveVector_Final != Vector3.zero && Running) GameManager.Instance.ref_Stats.Stamina_Modify(-3 * Time.deltaTime);
+        else GameManager.Instance.ref_Stats.Stamina_Modify(0.5f * Time.deltaTime);
+        ourCharacterController.Move(MoveVector_Final * (MoveSpeed * Time.deltaTime));
 
 
         if (ourcharacterGFX)
         {
             ourcharacterGFX.LookToDirection = transform.position + MoveVector_Final;
             float targetmovespeed = ourCharacterController.velocity.magnitude;
-            if (movespeed_current < targetmovespeed) movespeed_current = Mathf.Clamp(movespeed_current += 15f * Time.unscaledDeltaTime, 0, targetmovespeed);
-            else if (movespeed_current > targetmovespeed) movespeed_current = Mathf.Clamp(movespeed_current -= 15f * Time.unscaledDeltaTime, targetmovespeed, 10);
+            if (movespeed_current < targetmovespeed) movespeed_current = Mathf.Clamp(movespeed_current += 15f * Time.deltaTime, 0, targetmovespeed);
+            else if (movespeed_current > targetmovespeed) movespeed_current = Mathf.Clamp(movespeed_current -= 15f * Time.deltaTime, targetmovespeed, 10);
             ourcharacterGFX.ourMoveVelocity = movespeed_current;
         }
         if (transform.position.y != 1.1f)

@@ -30,6 +30,11 @@ public class randomize : MonoBehaviour
 
     private void Start()
     {
-        Randomize();
+        GameManager.Instance.onGameBegin += Randomize;
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance) GameManager.Instance.onGameBegin -= Randomize;
     }
 }

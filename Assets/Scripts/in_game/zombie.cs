@@ -59,6 +59,8 @@ public class zombie : enemy, IHaveName
 
     private void OnDestroy()
     {
+        if (GameManager.Instance == null) return;
+
         GameManager.Instance.onGameBegin -= Clean;
         GameManager.Instance.onGameOver -= Clean;
         GameManager.Instance.onGameEnding -= Clean;

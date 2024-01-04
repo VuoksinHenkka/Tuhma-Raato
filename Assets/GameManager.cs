@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     public GamePlayer ref_Player;
 
     public int PlayersLightAmount = 0;
-    public bool allowMovement = false;
 
     public MainMenu ourMainMenu;
     public StoryBeat ourStoryBeats;
