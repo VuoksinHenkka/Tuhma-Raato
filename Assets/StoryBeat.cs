@@ -50,6 +50,7 @@ public class StoryBeat : MonoBehaviour
 
     public void Click_Restart()
     {
+        gameObject.SetActive(false);
         GameManager.Instance.Game_NewGame();
     }
 }
