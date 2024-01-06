@@ -86,9 +86,15 @@ public class GamePlayer : MonoBehaviour
             else if (movespeed_current > targetmovespeed) movespeed_current = Mathf.Clamp(movespeed_current -= 15f * Time.deltaTime, targetmovespeed, 10);
             ourcharacterGFX.ourMoveVelocity = movespeed_current;
         }
-        if (transform.position.y != 1.1f)
-        {
-        }
 
+
+    }
+
+    private void LateUpdate()
+    {
+        if (transform.position.y != 1.01f)
+        {
+            transform.position = new Vector3(transform.position.x, 1.01f, transform.position.z);
+        }
     }
 }
