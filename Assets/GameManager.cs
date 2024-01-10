@@ -93,7 +93,11 @@ public class GameManager : MonoBehaviour
 
         if (ref_Stats)
         {
-            if (ref_Stats.HP == 0) Game_GameOver();
+            if (ref_Stats.HP == 0)
+            {
+                if (currentGameSate == gamestate.Gameplay || currentGameSate == gamestate.Inventory)
+                Game_GameOver();
+            }
         }
 
         if (Time_Hour > 5 && Time_Hour < 8) ref_Stats.Sanity_ItsNight = false;

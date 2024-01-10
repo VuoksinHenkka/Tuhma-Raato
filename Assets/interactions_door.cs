@@ -11,6 +11,7 @@ public class interactions_door : InteractionsTarget
     public UnityEvent OnUse;
     public bool isLocked = false;
     public GameObject NavMeshCarve;
+    public List<ItemDefiner> UnlocksWith;
 
     public void Start()
     {
@@ -36,17 +37,17 @@ public class interactions_door : InteractionsTarget
 
         if (isLocked)
         {
-            if (_interactWith.itemType == ItemDefiner.Type.Key)
+            foreach(ItemDefiner foundItem in UnlocksWith)
             {
-                isLocked = false;
-                GameManager.Instance.ref_ItemSolver.SpendItemInHand();
-                GameManager.Instance.ref_messagespawner.SpawnMessage("Unlocked the door.", Color.green, transform.position);
+                if (_interactWith.name == foundItem.Name)
+                {
+                    isLocked = false;
+                    if(_interactWith.itemType == ItemDefiner.Type.Key) GameManager.Instance.ref_ItemSolver.SpendItemInHand();
+                    GameManager.Instance.ref_messagespawner.SpawnMessage("Unlocked the door.", Color.green, transform.position);
+                    return;
+                }
             }
-            else
-            {
                 GameManager.Instance.ref_messagespawner.SpawnMessage("Door is locked.", Color.red, transform.position);
-
-            }
         }
     }
 

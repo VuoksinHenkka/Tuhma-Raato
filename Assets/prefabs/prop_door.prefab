@@ -519,6 +519,9 @@ MonoBehaviour:
       m_Calls: []
   isLocked: 1
   NavMeshCarve: {fileID: 8799371932692166848}
+  UnlocksWith:
+  - {fileID: 11400000, guid: 8a64785b646ad42c0a730cd47760f0ab, type: 2}
+  - {fileID: 11400000, guid: 2ddcf9f3b0d914e66bc3b21b25c05672, type: 2}
 --- !u!1 &8634854994187758970
 GameObject:
   m_ObjectHideFlags: 0

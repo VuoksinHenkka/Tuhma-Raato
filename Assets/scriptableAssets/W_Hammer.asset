@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Hammer
-  ActionCoolDown: 2
+  ActionCoolDown: 1
   SendRange: 5
-  Description: Average speed. 3 DMG. Consumes 3 Stamina
+  Description: Average speed.
   StaminaConsumption: 3
-  DamageOutput: 3
+  DamageOutput: 5
   GiveHealth: 0
   GiveStamina: 0
+  GiveSanity: 0
+  ourTexture: {fileID: 0}
   Icon: {fileID: 21300000, guid: 54e665309f7fc4e4bb4b24ae7d426c74, type: 3}

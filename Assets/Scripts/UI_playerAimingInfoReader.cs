@@ -26,7 +26,7 @@ public class UI_playerAimingInfoReader : MonoBehaviour
 
         if (ourInteractionTarget_Gameobject)
         {
-            if (ourInteractionTarget == null) ourInteractionTarget = ourInteractionTarget_Gameobject.GetComponent<ItemReceiver>();
+            ourInteractionTarget = ourInteractionTarget_Gameobject.GetComponent<ItemReceiver>();
         }
         else
         {
