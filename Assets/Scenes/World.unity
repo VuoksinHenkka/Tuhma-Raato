@@ -9346,6 +9346,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192501127}
   m_Mesh: {fileID: -77948852618913100, guid: ca29892202dbb4b16b59860e4cedcbc3, type: 3}
+--- !u!1 &195128198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5683482565410311860, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+    type: 3}
+  m_PrefabInstance: {fileID: 1655552025807885959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &195128199 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+    type: 3}
+  m_PrefabInstance: {fileID: 1655552025807885959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &198010597
 GameObject:
   m_ObjectHideFlags: 0
@@ -12182,6 +12194,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.046500664, y: 1.8113596, z: 3.3}
   m_Center: {x: -0.011013729, y: 0.000002861023, z: -0.12583075}
+--- !u!1 &272603277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5683482565410311860, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+    type: 3}
+  m_PrefabInstance: {fileID: 1767182791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &272603278 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+    type: 3}
+  m_PrefabInstance: {fileID: 1767182791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &273524393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18192,7 +18216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -22837,22 +22861,22 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2099521222}
     m_Modifications:
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77.91
+      value: 147.37
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01396966
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.22
+      value: -24.610003
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
@@ -22893,6 +22917,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: prop_helicopter_landing (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683482565410311860, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25111,6 +25140,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e92aae0a1e474176934a6626057cc7f, type: 3}
+--- !u!1 &546572204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5683482565410311860, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+    type: 3}
+  m_PrefabInstance: {fileID: 1689401175}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &546572205 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+    type: 3}
+  m_PrefabInstance: {fileID: 1689401175}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &548233797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28542,7 +28583,7 @@ VideoPlayer:
   m_GameObject: {fileID: 611722826}
   m_Enabled: 1
   m_VideoClip: {fileID: 32900000, guid: 870124719420748529a5f94ba5141c57, type: 3}
-  m_TargetCameraAlpha: 0.4
+  m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 330585545}
   m_TargetTexture: {fileID: 0}
@@ -83391,28 +83432,40 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1686961703}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1687067815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5683482565410311860, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+    type: 3}
+  m_PrefabInstance: {fileID: 506794694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1687067816 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+    type: 3}
+  m_PrefabInstance: {fileID: 506794694}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1689401175
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2099521222}
     m_Modifications:
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -69.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01396966
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
@@ -83453,6 +83506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: prop_helicopter_landing (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683482565410311860, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -88208,22 +88266,22 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2099521222}
     m_Modifications:
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.65
+      value: 99.11
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01396966
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -67.99
+      value: -113.82
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
@@ -88264,6 +88322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: prop_helicopter_landing (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683482565410311860, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -105234,6 +105297,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e92aae0a1e474176934a6626057cc7f, type: 3}
+--- !u!1 &2099521220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2099521222}
+  - component: {fileID: 2099521221}
+  m_Layer: 0
+  m_Name: SetHelicopterZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2099521221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099521220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832baa80c783247a39a417117bae5a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ourHelicopters:
+  - {fileID: 195128198}
+  - {fileID: 272603277}
+  - {fileID: 1687067815}
+  - {fileID: 546572204}
+--- !u!4 &2099521222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099521220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -69.46, y: 0.01396966, z: 45.83}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 195128199}
+  - {fileID: 272603278}
+  - {fileID: 1687067816}
+  - {fileID: 546572205}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2100210717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107824,22 +107940,22 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2099521222}
     m_Modifications:
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -54.23
+      value: 15.23
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01396966
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -52.12
+      value: -97.95
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
@@ -107849,17 +107965,17 @@ PrefabInstance:
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4419401611696678490, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
         type: 3}
@@ -107880,6 +107996,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: prop_helicopter_landing
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683482565410311860, guid: 84d96cd88a7dd4e2a8af69cb06b6f239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -109893,7 +110014,4 @@ SceneRoots:
   - {fileID: 1060608228}
   - {fileID: 752109015}
   - {fileID: 1753256552}
-  - {fileID: 1655552025807885959}
-  - {fileID: 1767182791}
-  - {fileID: 506794694}
-  - {fileID: 1689401175}
+  - {fileID: 2099521222}

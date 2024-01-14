@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public gamestate currentGameSate = gamestate.Gameplay;
     public int Time_Hour = 19;
     public float Time_Minute = 0;
-    private float ClockSpeed = 1.25f;
+    private float ClockSpeed = 1f;
     public float GameSpeed = 1;
     public float GameSpeedInsanityModifier = 0;
     public float cooldownTimer = 0;
@@ -42,7 +42,10 @@ public class GameManager : MonoBehaviour
     public delegate void OnGameEnding();
     public event OnGameEnding onGameEnding;
 
-    //peli alkaa klo 19 ja loppuu klo 6.00
+    
+    public delegate void OnEvacZoneActive();
+    public event OnEvacZoneActive onEvacZoneActive;
+    //peli alkaa klo 19 ja loppuu klo 4am, kun helikopteri tulee
 
     private static GameManager _instance;
     public static GameManager Instance
@@ -79,16 +82,18 @@ public class GameManager : MonoBehaviour
         else Time.timeScale = GameSpeed + GameSpeedInsanityModifier;
         if (currentGameSate == gamestate.Gameplay)
         {
-            if (Time_Minute != 60) Time_Minute = Mathf.Clamp(Time_Minute += ClockSpeed * Time.deltaTime, 0, 60);
-            else
+            if (Time_Hour != 4)
             {
-                Time_Minute = 0;
-                UpdateClock();
+                if (Time_Minute != 60) Time_Minute = Mathf.Clamp(Time_Minute += ClockSpeed * Time.deltaTime, 0, 60);
+                else
+                {
+                    Time_Minute = 0;
+                    UpdateClock();
 
+                }
             }
             ourSun_colour_lerpTarget = UpdateSunColour();
             ourSun.color = Color.Lerp(ourSun.color, ourSun_colour_lerpTarget, 0.1f * Time.deltaTime);
-            //ref_Camera.ourCamera.backgroundColor = ourSun.color * 0.5f;
         }
 
         if (ref_Stats)
@@ -107,8 +112,8 @@ public class GameManager : MonoBehaviour
 
         if (ref_Stats.Sanity_ItsNight)
         {
-            if (PlayersLightAmount == 0) ref_Stats.Sanity_Modify(-(2 * Time.deltaTime));
-            else ref_Stats.Sanity_Modify(1 * Time.deltaTime);
+            if (PlayersLightAmount == 0) ref_Stats.Sanity_Modify(-(1.25f * Time.deltaTime));
+            else ref_Stats.Sanity_Modify(3f * Time.deltaTime);
         }
 
         if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatHP) ref_Stats.HP_ModifyNoMessage(-3 * Time.deltaTime);
@@ -150,9 +155,15 @@ public class GameManager : MonoBehaviour
         Time_Hour++;
         if (Time_Hour > 23) Time_Hour = 0;
 
-        if (Time_Hour == 6) Game_Finished();
+        if (Time_Hour == 4) EvacZoneActive();
     }
-    
+
+    public void EvacZoneActive()
+    {
+        if (onEvacZoneActive != null) onEvacZoneActive.Invoke();
+
+    }
+
     public void Game_Finished()
     {
         if (onGameEnding != null) onGameEnding.Invoke();

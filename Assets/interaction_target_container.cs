@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class interaction_target_container : InteractionsTarget
 {
-    public enum ItemSpawnType {Cheap, Mid, Expensive}
+    public enum ItemSpawnType {Cheap, Mid, Expensive, Nothing}
     public ItemSpawnType WhatWeSpawn = ItemSpawnType.Cheap;
     public List<Transform> SpawnPositions;
 
