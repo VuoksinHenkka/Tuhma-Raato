@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour
             }
             else
             {
-                AudioSource toPlay = MusicTracks[Random.Range(0, MusicTracks.Count - 1)];
+                AudioSource toPlay = MusicTracks[Random.Range(0, MusicTracks.Count)];
                 Song_LeftToPlay = toPlay.clip.length;
                 toPlay.Play();
                 CurrenTimeBetweenSongs = TimeBetweenSongs;
