@@ -30305,7 +30305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20c521033dd93c49a568a983d3dd5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Zombie_Basic: {fileID: 2448759149907254161, guid: f44205c005e02be408fb90f927c8fe5c,
+  Zombie_Basic: {fileID: 371156102911816179, guid: 6f0889de4cea741958dbbacd471941c9,
     type: 3}
   spawnPositions:
   - {fileID: 1010195922}

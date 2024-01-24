@@ -19,7 +19,7 @@ public class zombie : enemy, IHaveName
     private float AttackTimer = 0.5f;
     private string ourName = "Zombie";
     private int HP = 10;
-
+    public Vector3 formationTarget = Vector3.zero;
 
 
     private OffMeshLinkData ourMeshLinkData;
@@ -81,11 +81,9 @@ public class zombie : enemy, IHaveName
             if (ourcharacterGFX) ourcharacterGFX.LookToDirection = GameManager.Instance.ref_Player.transform.position;
             currentDistanceToPlayer = DistanceToPlayer();
             MoveSpeed = Mathf.Lerp(MoveSpeed, MoveSpeedTarget, 1f * Time.deltaTime);
-
             if (currentDistanceToPlayer > 50) ourAgent.speed = 8f;
             else ourAgent.speed = MoveSpeed;
             
-           
             if (UpdateCycleForMoveTargets_Current < UpdateCycleForMoveTargets_Target) UpdateCycleForMoveTargets_Current += 1 * Time.deltaTime;
             else
             {
@@ -101,8 +99,16 @@ public class zombie : enemy, IHaveName
                 PickRandomMovePattern();
                 MoveSpeedTarget = Random.Range(0.5f, 4);
 
-                if (currentMovementType == MovementType.straight) ourAgent.SetDestination(GameManager.Instance.ref_Player.transform.position);
-                else ourAgent.SetDestination(GameManager.Instance.ref_Player.transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)));
+                Vector3 moveTarget = Vector3.zero;
+                
+                if (formationTarget != Vector3.zero && currentDistanceToPlayer > 7) moveTarget = formationTarget;
+                else
+                {
+                    moveTarget = GameManager.Instance.ref_Player.transform.position;
+                }
+
+                if (currentMovementType == MovementType.straight) ourAgent.SetDestination(moveTarget);
+                else ourAgent.SetDestination(moveTarget + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)));
                        
             }
 
@@ -120,6 +126,7 @@ public class zombie : enemy, IHaveName
             else if (AttackTimer != 0.5f) AttackTimer = 0.5f;
         }
 
+          
         ourcharacterGFX.ourMoveVelocity = ourAgent.velocity.magnitude;
 
         if (currentDistanceToPlayer < 30) NavMeshLayerReactions();
