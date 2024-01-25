@@ -19,7 +19,7 @@ public class FormationRenderer : MonoBehaviour {
     // Instead of just drawing gizmos, you could create an 'Army' script which would actually spawn the units in the positions
     // returned by Formation.EvaluatePoints
     private void OnDrawGizmos() {
-        if (Formation == null || Application.isPlaying) return;
+        if (Formation == null) return;
         Gizmos.color = _gizmoColor;
 
         foreach (var pos in Formation.EvaluatePoints()) {

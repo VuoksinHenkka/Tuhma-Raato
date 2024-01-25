@@ -9,8 +9,6 @@ public class zombie : enemy, IHaveName
     public NavMeshAgent ourAgent;
     public bool interestedInPlayer = true;
     private float attackDistance = 2;
-    public enum MovementType {straight, chaotic}
-    public MovementType currentMovementType = MovementType.straight;
     private float currentDistanceToPlayer = 10;
     private float UpdateCycleForMoveTargets_Current = 0;
     private float UpdateCycleForMoveTargets_Target = 2;
@@ -18,7 +16,7 @@ public class zombie : enemy, IHaveName
     private float MoveSpeedTarget = 0;
     private float AttackTimer = 0.5f;
     private string ourName = "Zombie";
-    private int HP = 10;
+    public int HP = 5;
     public Vector3 formationTarget = Vector3.zero;
 
 
@@ -39,7 +37,6 @@ public class zombie : enemy, IHaveName
     {
         ourAgent.avoidancePriority = Random.Range(30, 60);
         MoveSpeed = Random.Range(1, 7);
-        PickRandomMovePattern();
         MoveSpeedTarget = Random.Range(0.5f, 9);
         MoveSpeed = MoveSpeedTarget;
         Hurdle_NavMeshLayer = NavMesh.GetAreaFromName("Hurdle");
@@ -66,16 +63,10 @@ public class zombie : enemy, IHaveName
         GameManager.Instance.onGameEnding -= Clean;
     }
 
-    private void PickRandomMovePattern()
-    {
-        float randomFloat = Random.Range(0, 2);
-        if (randomFloat <= 1.5f) currentMovementType = MovementType.straight;
-        else currentMovementType = MovementType.chaotic;
-    }
-
 
     private void Update()
     {
+        if (ourAgent.isOnNavMesh == false) Destroy(gameObject);
         if (interestedInPlayer)
         {
             if (ourcharacterGFX) ourcharacterGFX.LookToDirection = GameManager.Instance.ref_Player.transform.position;
@@ -93,11 +84,8 @@ public class zombie : enemy, IHaveName
                     if (RandomChance == 0) AudioManager.Instance.SFX_ZombieYell();
                 }
 
-                if (currentMovementType == MovementType.chaotic) UpdateCycleForMoveTargets_Target = Random.Range(1f, 3);
-                else UpdateCycleForMoveTargets_Target = 0.1f;
                 UpdateCycleForMoveTargets_Current = 0;
-                PickRandomMovePattern();
-                MoveSpeedTarget = Random.Range(0.5f, 4);
+                MoveSpeedTarget = Random.Range(0.1f, 1);
 
                 Vector3 moveTarget = Vector3.zero;
                 
@@ -107,9 +95,7 @@ public class zombie : enemy, IHaveName
                     moveTarget = GameManager.Instance.ref_Player.transform.position;
                 }
 
-                if (currentMovementType == MovementType.straight) ourAgent.SetDestination(moveTarget);
-                else ourAgent.SetDestination(moveTarget + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)));
-                       
+                ourAgent.SetDestination(moveTarget);                       
             }
 
 

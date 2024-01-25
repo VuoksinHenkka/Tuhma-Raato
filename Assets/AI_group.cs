@@ -7,6 +7,23 @@ public class AI_group : MonoBehaviour
     public List<zombie> ourZombies;
     public FormationBase ourFormation;
     public List<Vector3> formationTargets;
+    public GameObject toSpawn;
+
+
+    private void OnEnable()
+    {
+        formationTargets.Clear();
+        foreach (var pos in ourFormation.EvaluatePoints())
+        {
+            formationTargets.Add(pos);
+        }
+        foreach(Vector3 foundtarget in formationTargets)
+        {
+            GameObject spawnGuy = Instantiate(toSpawn, transform);
+            ourZombies.Add(spawnGuy.GetComponent<zombie>());
+            spawnGuy.transform.position = transform.position + foundtarget;
+        }
+    }
 
     private void Update()
     {
@@ -24,8 +41,12 @@ public class AI_group : MonoBehaviour
 
             for (int i = 0; i < ourZombiesCount; i++)
             {
-            if (ourZombies[i] == null) continue;
-                if (ourZombies[i].enabled) ourZombies[i].formationTarget = transform.position+formationTargets[i];
+            if (ourZombies[i] == null)
+            {
+                ourZombies.RemoveAt(i);
+                break;
+            }
+            else if (ourZombies[i].enabled) ourZombies[i].formationTarget = transform.position + formationTargets[i];
             }
     }
 }
