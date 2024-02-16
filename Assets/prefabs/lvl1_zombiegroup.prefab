@@ -50,6 +50,7 @@ MonoBehaviour:
   ourFormation: {fileID: 3581688248755613531}
   formationTargets: []
   toSpawn: {fileID: 2448759149907254161, guid: f44205c005e02be408fb90f927c8fe5c, type: 3}
+  ourAgent: {fileID: 0}
 --- !u!195 &-3291970994483619042
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -85,7 +85,7 @@ public class zombie : enemy, IHaveName
                 }
 
                 UpdateCycleForMoveTargets_Current = 0;
-                MoveSpeedTarget = Random.Range(1.5f, 3f);
+                MoveSpeedTarget = Random.Range(1f, 2f);
 
                 Vector3 moveTarget = Vector3.zero;
                 
@@ -105,6 +105,7 @@ public class zombie : enemy, IHaveName
                 else
                 {
                     GameManager.Instance.ref_Stats.HP_Modify(-10);
+                    GameManager.Instance.ref_particlespawner.Spawn_Blood(GameManager.Instance.ref_Player.transform.position);
                     AttackTimer = Random.Range(2,3);
 
                 }
@@ -145,6 +146,7 @@ public class zombie : enemy, IHaveName
 
     public override void Hurt(int _amount)
     {
+        GameManager.Instance.ref_particlespawner.Spawn_Blood(transform.position+(Vector3.up*0.5f));
         GameManager.Instance.ref_messagespawner.SpawnMessage("-" + _amount, Color.white, transform.position);
         HP = HP - _amount;
         if (HP < 1) Die();

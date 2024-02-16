@@ -15,6 +15,8 @@ public class GamePlayerItemUsing : MonoBehaviour
 
     private float currentInteractionRange = 4;
 
+    private float clickCoolDown = 0.01f;
+
 
     void Update()
     {
@@ -23,13 +25,23 @@ public class GamePlayerItemUsing : MonoBehaviour
         else if (!currentTarget && ourCharacterGFX) ourCharacterGFX.LookToDirection_override = Vector3.zero;
         if (cooldown != 0) cooldown = Mathf.Clamp(cooldown -= 1 * Time.deltaTime, 0, 100);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
-            Interact();
+            if (clickCoolDown < 0)
+            {
+                Interact();
+                clickCoolDown = 0.25f;
+            }
+            else clickCoolDown = clickCoolDown -= Time.deltaTime * 1f;
         }
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButton("Fire2"))
         {
-            ThrowItem();
+            if (clickCoolDown < 0)
+            {
+                ThrowItem();
+                clickCoolDown = 0.25f;
+            }
+            else clickCoolDown = clickCoolDown -= Time.deltaTime * 1f;
         }
 
 

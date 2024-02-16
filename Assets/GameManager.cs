@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public NavMeshSurface ref_NavMeshSurface;
     public ItemManager ref_ItemSolver;
     public MessageSpawner ref_messagespawner;
+    public particlespawner ref_particlespawner;
+
     public Stats ref_Stats;
     private Color ourSun_colour_lerpTarget;
     public GameCamera ref_Camera;
