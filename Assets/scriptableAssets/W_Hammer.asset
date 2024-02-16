@@ -18,7 +18,7 @@ MonoBehaviour:
   SendRange: 5
   Description: Average speed.
   StaminaConsumption: 3
-  DamageOutput: 5
+  DamageOutput: 3
   GiveHealth: 0
   GiveStamina: 0
   GiveSanity: 0

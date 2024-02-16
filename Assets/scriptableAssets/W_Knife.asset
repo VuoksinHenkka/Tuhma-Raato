@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Knife
-  ActionCoolDown: 1
+  ActionCoolDown: 0.5
   SendRange: 5
   Description: Fast and lightweight.
-  StaminaConsumption: 3
-  DamageOutput: 3
+  StaminaConsumption: 2
+  DamageOutput: 2
   GiveHealth: 0
   GiveStamina: 0
   GiveSanity: 0

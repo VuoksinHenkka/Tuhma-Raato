@@ -51,6 +51,25 @@ public class interactions_door : InteractionsTarget
         }
     }
 
+    public void ReceiveZombie()
+    {
+        ourAnimator.SetTrigger("Use");
+        if (isLocked == false) ourAnimator.SetBool("Open", !ourAnimator.GetBool("Open"));
+        OnUse.Invoke();
+
+        if (isLocked)
+        {
+            int tryToBreakDoor = Random.Range(0, 10);
+            if (tryToBreakDoor < 4)
+            {
+                isLocked = false;
+                ourAnimator.SetBool("Open", !ourAnimator.GetBool("Open"));
+                GameManager.Instance.ref_particlespawner.Spawn_Splinters(transform.position);
+            }
+            GameManager.Instance.ref_messagespawner.SpawnMessage("<scratching>", Color.red, transform.position);
+        }
+    }
+
     private void Update()
     {
         if (isLocked && NavMeshCarve.activeSelf == false) NavMeshCarve.SetActive(true);

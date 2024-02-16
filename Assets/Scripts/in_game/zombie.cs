@@ -24,6 +24,11 @@ public class zombie : enemy, IHaveName
     public bool AnimationLaunched_Hurdle = false;
     private int Hurdle_NavMeshLayer = 0;
 
+
+    private void OnEnable()
+    {
+        ourAgent.avoidancePriority = Random.Range(20, 60);
+    }
     public override string GiveName()
     {
         return ourName;

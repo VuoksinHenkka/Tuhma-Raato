@@ -13,7 +13,7 @@ public class opendoorifZombieNearDoor : MonoBehaviour
         if (other.CompareTag("Zombie"))
         {
             print("Zombie enters door");
-            if (ourDoor.ourAnimator.GetBool("Open") == false) ourDoor.Receive(emptyItem);
+            if (ourDoor.ourAnimator.GetBool("Open") == false) ourDoor.ReceiveZombie();
         }
     }
 }

@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         if (ref_Stats.Sanity_ItsNight)
         {
             if (PlayersLightAmount == 0) ref_Stats.Sanity_Modify(-(1.25f * Time.deltaTime));
-            else ref_Stats.Sanity_Modify(3f * Time.deltaTime);
+            else ref_Stats.Sanity_Modify(8f * Time.deltaTime);
         }
 
         if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.EatHP) ref_Stats.HP_ModifyNoMessage(-3 * Time.deltaTime);
@@ -134,7 +134,6 @@ public class GameManager : MonoBehaviour
 
     public void ModifyPlayersLightAmount(int byAmount)
     {
-        print("modify player light by " + byAmount);
         PlayersLightAmount = PlayersLightAmount + byAmount;
         if (PlayersLightAmount < 0) PlayersLightAmount = 0;
     }
