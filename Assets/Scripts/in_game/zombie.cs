@@ -36,8 +36,8 @@ public class zombie : enemy, IHaveName
     private void Awake()
     {
         ourAgent.avoidancePriority = Random.Range(30, 60);
-        MoveSpeed = Random.Range(1, 7);
-        MoveSpeedTarget = Random.Range(0.5f, 9);
+        MoveSpeed = Random.Range(2, 7);
+        MoveSpeedTarget = Random.Range(2f, 9);
         MoveSpeed = MoveSpeedTarget;
         Hurdle_NavMeshLayer = NavMesh.GetAreaFromName("Hurdle");
     }
@@ -71,8 +71,8 @@ public class zombie : enemy, IHaveName
         {
             if (ourcharacterGFX) ourcharacterGFX.LookToDirection = GameManager.Instance.ref_Player.transform.position;
             currentDistanceToPlayer = DistanceToPlayer();
-            MoveSpeed = Mathf.Lerp(MoveSpeed, MoveSpeedTarget, 1f * Time.deltaTime);
-            if (currentDistanceToPlayer > 50) ourAgent.speed = 8f;
+            MoveSpeed = Mathf.Lerp(MoveSpeed, MoveSpeedTarget, 2f * Time.deltaTime);
+            if (currentDistanceToPlayer > 50) ourAgent.speed = 9f;
             else ourAgent.speed = MoveSpeed;
             
             if (UpdateCycleForMoveTargets_Current < UpdateCycleForMoveTargets_Target) UpdateCycleForMoveTargets_Current += 1 * Time.deltaTime;
@@ -85,7 +85,7 @@ public class zombie : enemy, IHaveName
                 }
 
                 UpdateCycleForMoveTargets_Current = 0;
-                MoveSpeedTarget = Random.Range(0.1f, 1);
+                MoveSpeedTarget = Random.Range(1.5f, 3f);
 
                 Vector3 moveTarget = Vector3.zero;
                 
@@ -126,7 +126,6 @@ public class zombie : enemy, IHaveName
         {
             if (ourAgent.currentOffMeshLinkData.offMeshLink.area == Hurdle_NavMeshLayer)
             {
-                print("in hurdle area");
                 if (AnimationLaunched_Hurdle == false)
                 {
                     ourcharacterGFX.ourAnimator.SetTrigger("Hurdle");

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AI_group : MonoBehaviour
 {
@@ -8,7 +9,12 @@ public class AI_group : MonoBehaviour
     public FormationBase ourFormation;
     public List<Vector3> formationTargets;
     public GameObject toSpawn;
+    public NavMeshAgent ourAgent;
 
+    private void Awake()
+    {
+        ourAgent = GetComponent<NavMeshAgent>();
+    }
 
     private void OnEnable()
     {
@@ -19,7 +25,7 @@ public class AI_group : MonoBehaviour
         }
         foreach(Vector3 foundtarget in formationTargets)
         {
-            GameObject spawnGuy = Instantiate(toSpawn, transform);
+            GameObject spawnGuy = Instantiate(toSpawn, null);
             ourZombies.Add(spawnGuy.GetComponent<zombie>());
             spawnGuy.transform.position = transform.position + foundtarget;
         }
@@ -38,6 +44,7 @@ public class AI_group : MonoBehaviour
             formationTargets.Add(pos);
         }
 
+        ourAgent.SetDestination(GameManager.Instance.ref_Player.transform.position);
 
             for (int i = 0; i < ourZombiesCount; i++)
             {
