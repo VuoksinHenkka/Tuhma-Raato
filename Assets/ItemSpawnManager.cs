@@ -8,6 +8,8 @@ public class ItemSpawnManager : MonoBehaviour
     public List<ItemPickUp> Cheap;
     public List<ItemPickUp> Mid;
     public List<ItemPickUp> Expensive;
+    public List<ItemPickUp> CorpseItems;
+
 
     private static ItemSpawnManager _instance;
     public static ItemSpawnManager Instance
@@ -41,6 +43,11 @@ public class ItemSpawnManager : MonoBehaviour
     public void SpawnExpensive(Vector3 spawnPos)
     {
         RunThruList(Expensive, spawnPos);
+    }
+
+    public void SpawnCorpse(Vector3 spawnPos)
+    {
+        RunThruList(CorpseItems, spawnPos);
     }
 
     private void RunThruList(List<ItemPickUp> toCheck, Vector3 spawnPos)

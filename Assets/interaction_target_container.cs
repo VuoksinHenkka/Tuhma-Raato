@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class interaction_target_container : InteractionsTarget
 {
-    public enum ItemSpawnType {Cheap, Mid, Expensive, Nothing}
+    public enum ItemSpawnType {Cheap, Mid, Expensive, Nothing, Corpse}
     public ItemSpawnType WhatWeSpawn = ItemSpawnType.Cheap;
     public List<Transform> SpawnPositions;
 
@@ -15,8 +15,13 @@ public class interaction_target_container : InteractionsTarget
     public bool ConsumeStamina = false;
     public int ChanceOfDisappearing = 0;
     public string InteractionAnimation = "Interact";
+    private Collider ourCollider;
 
 
+    private void Awake()
+    {
+        ourCollider = GetComponent<Collider>();
+    }
     public void Start()
     {
         GameManager.Instance.onGameBegin += Respawn;
@@ -24,6 +29,7 @@ public class interaction_target_container : InteractionsTarget
 
     public void Respawn()
     {
+        ourCollider.enabled = true;
         Opened = false;
         if (myAnimator) myAnimator.SetBool("Open", false);
 
@@ -84,9 +90,12 @@ public class interaction_target_container : InteractionsTarget
             if (WhatWeSpawn == ItemSpawnType.Cheap) ItemSpawnManager.Instance.SpawnCheap(SpawnPosition.position);
             else if (WhatWeSpawn == ItemSpawnType.Mid) ItemSpawnManager.Instance.SpawnMid(SpawnPosition.position);
             else if (WhatWeSpawn == ItemSpawnType.Expensive) ItemSpawnManager.Instance.SpawnExpensive(SpawnPosition.position);
+            else if (WhatWeSpawn == ItemSpawnType.Corpse) ItemSpawnManager.Instance.SpawnCorpse(SpawnPosition.position);
+
         }
 
 
         onInteract.Invoke();
+        ourCollider.enabled = false;
     }
 }

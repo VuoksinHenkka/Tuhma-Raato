@@ -214,7 +214,6 @@ MonoBehaviour:
   SpawnPositions:
   - {fileID: 6745075334460996587}
   - {fileID: 8383881738144377076}
-  - {fileID: 1213572107105906949}
   myAnimator: {fileID: 0}
   OpenWithItems:
   - {fileID: 11400000, guid: 2ddcf9f3b0d914e66bc3b21b25c05672, type: 2}

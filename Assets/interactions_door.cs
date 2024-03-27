@@ -37,10 +37,12 @@ public class interactions_door : InteractionsTarget
 
         if (isLocked)
         {
+            print("is locked");
             foreach(ItemDefiner foundItem in UnlocksWith)
             {
                 if (_interactWith.name == foundItem.Name)
                 {
+                    print("found the item in hand");
                     isLocked = false;
                     if(_interactWith.itemType == ItemDefiner.Type.Key) GameManager.Instance.ref_ItemSolver.SpendItemInHand();
                     GameManager.Instance.ref_messagespawner.SpawnMessage("Unlocked the door.", Color.green, transform.position);

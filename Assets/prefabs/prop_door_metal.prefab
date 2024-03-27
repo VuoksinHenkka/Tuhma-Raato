@@ -306,7 +306,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   spawnDamageMessage: 1
-  ourName: Door
+  ourName: Electric Door
   ourAnimator: {fileID: 4365549964586913170}
   OnUse:
     m_PersistentCalls:

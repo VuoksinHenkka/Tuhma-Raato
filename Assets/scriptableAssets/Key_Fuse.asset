@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Key_Fuse
   m_EditorClassIdentifier: 
   itemType: 3
-  Name: Fuse
+  Name: Keycard
   ActionCoolDown: 1
-  SendRange: 3
-  Description: Unlocks Electronic Doors
+  SendRange: 8
+  Description: Unlocks Green Doors
   StaminaConsumption: 0
   DamageOutput: 0
   GiveHealth: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 3
   Name: Key
   ActionCoolDown: 1
-  SendRange: 3
+  SendRange: 8
   Description: Unlocks Brown Doors
   StaminaConsumption: 0
   DamageOutput: 0
