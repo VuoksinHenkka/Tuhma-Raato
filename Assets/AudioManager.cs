@@ -37,6 +37,97 @@ public class AudioManager : MonoBehaviour
     private float TimeBetweenSongs = 60;
     private float CurrenTimeBetweenSongs = 60;
 
+    public audio_sfx gore;
+    public audio_sfx step;
+    public audio_sfx stepfast;
+    public audio_sfx player_hit;
+    public audio_sfx player_cry;
+    public audio_sfx attack_shoot;
+    public audio_sfx attack_slash;
+    public audio_sfx attack_swing;
+    public audio_sfx heal;
+    public audio_sfx opendoor;
+    public audio_sfx lockeddoor;
+    public audio_sfx openstash;
+    public audio_sfx pickupitem;
+
+    public enum sfxtype { gore,step,stepfast,player_hit,player_cry,attack_shoot,attack_slash,attack_swing,heal,opendoor,lockeddoor,openstash,pickupitem};
+
+    public void play_sfx(sfxtype toplay)
+    {
+        switch (toplay)
+        {
+            case sfxtype.gore:
+                gore.PlaySound();
+                break;
+            case sfxtype.step:
+                step.PlaySound();
+                break;
+            case sfxtype.stepfast:
+                stepfast.PlaySound();
+                break;
+            case sfxtype.player_hit:
+                player_hit.PlaySound();
+                break;
+            case sfxtype.player_cry:
+                player_cry.PlaySound();
+                break;
+            case sfxtype.attack_shoot:
+                attack_shoot.PlaySound();
+                break;
+            case sfxtype.attack_slash:
+                attack_slash.PlaySound();
+                break;
+            case sfxtype.attack_swing:
+                attack_swing.PlaySound();
+                break;
+            case sfxtype.heal:
+                heal.PlaySound();
+                break;
+            case sfxtype.opendoor:
+                opendoor.PlaySound();
+                break;
+            case sfxtype.lockeddoor:
+                lockeddoor.PlaySound();
+                break;
+            case sfxtype.openstash:
+                openstash.PlaySound();
+                break;
+            case sfxtype.pickupitem:
+                pickupitem.PlaySound();
+                break;
+        }
+    }
+
+    public void parseInteractSoundFrom(ItemDefiner usedItem)
+    {
+        switch (usedItem.Name)
+        {
+            case "Knife":
+                AudioManager.Instance.play_sfx(sfxtype.attack_slash);
+                break;
+            case "Crowbar":
+                AudioManager.Instance.play_sfx(sfxtype.attack_swing);
+                break;
+            case "Hammer":
+                AudioManager.Instance.play_sfx(sfxtype.attack_swing);
+                break;
+            case "Axe":
+                AudioManager.Instance.play_sfx(sfxtype.attack_slash);
+                break;
+            case "Pistol":
+                AudioManager.Instance.play_sfx(sfxtype.attack_shoot);
+                break;
+            case "Shotgun":
+                AudioManager.Instance.play_sfx(sfxtype.attack_shoot);
+                break;
+            case "Machinegun":
+                AudioManager.Instance.play_sfx(sfxtype.attack_shoot);
+                break;
+            default:
+                break;
+        }
+    }
 
     private void Update()
     {

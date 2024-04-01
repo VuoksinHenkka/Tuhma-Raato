@@ -183,6 +183,10 @@ public class Inventory : MonoBehaviour
     public void ConsumeItem(InventoryCell toConsume)
     {
         ItemDefiner consumeparameters = toConsume.ourItem;
+        if (consumeparameters.GiveHealth != 0) AudioManager.Instance.play_sfx(AudioManager.sfxtype.heal);
+        else if (consumeparameters.GiveStamina != 0) AudioManager.Instance.play_sfx(AudioManager.sfxtype.heal);
+        else if (consumeparameters.GiveSanity != 0) AudioManager.Instance.play_sfx(AudioManager.sfxtype.heal);
+
         GameManager.Instance.ref_Stats.HP_Modify(consumeparameters.GiveHealth);
         GameManager.Instance.ref_Stats.Stamina_Modify(consumeparameters.GiveStamina);
         GameManager.Instance.ref_Stats.Sanity_Modify(consumeparameters.GiveSanity);

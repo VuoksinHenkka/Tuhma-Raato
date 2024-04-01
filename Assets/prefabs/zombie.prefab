@@ -107,7 +107,8 @@ MonoBehaviour:
   ourcharacterGFX: {fileID: 4886756934149668437}
   ourAgent: {fileID: 884574886638703597}
   interestedInPlayer: 1
-  HP: 5
+  MoveSpeed: 0.75
+  HP: 4
   formationTarget: {x: 0, y: 0, z: 0}
   AnimationLaunched_Hurdle: 0
 --- !u!195 &884574886638703597
@@ -119,8 +120,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 2448759149907254161}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.73
-  m_Speed: 1.5
+  m_Radius: 0.5
+  m_Speed: 0.75
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -288,6 +289,7 @@ GameObject:
   - component: {fileID: 3806152388006069444}
   - component: {fileID: 5135100974901496473}
   - component: {fileID: 2437283319346783432}
+  - component: {fileID: 7971832254138764126}
   m_Layer: 6
   m_Name: InteractionTarget
   m_TagString: Item
@@ -349,6 +351,18 @@ MonoBehaviour:
       m_Calls: []
   spawnDamageMessage: 1
   ourName: Zombie
+--- !u!114 &7971832254138764126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6333079309351632552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1bdb033c95043fea621ee1c2bff3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4094293401220127469
 PrefabInstance:
   m_ObjectHideFlags: 0

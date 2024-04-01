@@ -97,5 +97,6 @@ public class interaction_target_container : InteractionsTarget
 
         onInteract.Invoke();
         ourCollider.enabled = false;
+        AudioManager.Instance.play_sfx(AudioManager.sfxtype.openstash);
     }
 }

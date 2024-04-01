@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: W_Shotgun
   m_EditorClassIdentifier: 
   itemType: 0
-  Name: Pistol
-  ActionCoolDown: 5
-  SendRange: 10
+  Name: Shotgun
+  ActionCoolDown: 2
+  SendRange: 15
   Description: Massive damage with short range. 15 DMG
-  StaminaConsumption: 1
-  DamageOutput: 15
+  StaminaConsumption: 0
+  DamageOutput: 20
   GiveHealth: 0
   GiveStamina: 0
   GiveSanity: 0

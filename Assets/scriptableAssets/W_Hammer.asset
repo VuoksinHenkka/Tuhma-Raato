@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Hammer
-  ActionCoolDown: 1
-  SendRange: 5
+  ActionCoolDown: 1.25
+  SendRange: 3
   Description: Average speed.
-  StaminaConsumption: 3
+  StaminaConsumption: 0
   DamageOutput: 3
   GiveHealth: 0
   GiveStamina: 0

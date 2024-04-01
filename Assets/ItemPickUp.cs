@@ -43,6 +43,7 @@ public class ItemPickUp : ItemReceiver, IHaveName, IHaveLimitedUseRange
         if (CanPick)
         {
             GameManager.Instance.ref_messagespawner.SpawnMessage(("Picked up " + ourItem.Name), Color.white, GameManager.Instance.ref_Player.transform.position);
+            AudioManager.Instance.play_sfx(AudioManager.sfxtype.pickupitem);
             gameObject.SetActive(false);
         }
         else

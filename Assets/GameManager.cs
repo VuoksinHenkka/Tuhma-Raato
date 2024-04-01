@@ -23,11 +23,15 @@ public class GameManager : MonoBehaviour
     public ItemManager ref_ItemSolver;
     public MessageSpawner ref_messagespawner;
     public particlespawner ref_particlespawner;
-
+    public gameSpawnZombies ourzombiespawner;
     public Stats ref_Stats;
     private Color ourSun_colour_lerpTarget;
     public GameCamera ref_Camera;
     public GamePlayer ref_Player;
+
+    public int activeNormalZombies = 0;
+    public int activeSuperzombies = 0;
+    public int activeFastZombies = 0;
 
     public int PlayersLightAmount = 0;
 

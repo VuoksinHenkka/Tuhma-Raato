@@ -78,6 +78,7 @@ public class Stats : MonoBehaviour
 
     IEnumerator GoCrazy()
     {
+        AudioManager.Instance.play_sfx(AudioManager.sfxtype.player_cry);
         GameManager.Instance.ref_messagespawner.SpawnMessage(insanityMessages[Random.Range(0, insanityMessages.Count-1)], Random.ColorHSV(0.6f,0.9f,1,1,0.8f,1), GameManager.Instance.ref_Player.transform.position);
         yield return null;
         int randomFX = Random.Range(0, 5);

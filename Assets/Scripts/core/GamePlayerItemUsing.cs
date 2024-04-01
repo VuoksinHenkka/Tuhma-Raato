@@ -95,6 +95,7 @@ public class GamePlayerItemUsing : MonoBehaviour
         if (cooldown != 0 || currentTarget == null || IsInRange() == false) return;
         else if (currentTarget.CompareTag("Item"))
         {
+            currentTarget.BroadcastMessage("TryAttackSound", GameManager.Instance.ref_ItemSolver.currentlyHolding, SendMessageOptions.DontRequireReceiver);
             currentTarget.BroadcastMessage("Receive", GameManager.Instance.ref_ItemSolver.currentlyHolding, SendMessageOptions.DontRequireReceiver);
             cooldown = GameManager.Instance.ref_ItemSolver.currentlyHolding.ActionCoolDown;
         }

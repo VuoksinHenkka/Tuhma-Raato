@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Machinegun
-  ActionCoolDown: 1
+  ActionCoolDown: 0.1
   SendRange: 15
-  Description: Fast but not much damage. 1 DMG
+  Description: Fast but not much damage.
   StaminaConsumption: 0
-  DamageOutput: 1
+  DamageOutput: 2
   GiveHealth: 0
   GiveStamina: 1
   GiveSanity: 0

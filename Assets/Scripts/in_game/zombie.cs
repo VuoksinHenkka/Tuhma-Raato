@@ -10,12 +10,10 @@ public class zombie : enemy, IHaveName
     public bool interestedInPlayer = true;
     private float attackDistance = 2;
     private float currentDistanceToPlayer = 10;
-    private float UpdateCycleForMoveTargets_Current = 0;
     private float UpdateCycleForMoveTargets_Target = 2;
-    private float MoveSpeed = 0;
-    private float MoveSpeedTarget = 0;
     private float AttackTimer = 0.5f;
     private string ourName = "Zombie";
+    public float MoveSpeed = 1;
     public int HP = 5;
     public Vector3 formationTarget = Vector3.zero;
 
@@ -41,9 +39,7 @@ public class zombie : enemy, IHaveName
     private void Awake()
     {
         ourAgent.avoidancePriority = Random.Range(30, 60);
-        MoveSpeed = Random.Range(2, 7);
-        MoveSpeedTarget = Random.Range(2f, 9);
-        MoveSpeed = MoveSpeedTarget;
+        ourAgent.speed = MoveSpeed;
         Hurdle_NavMeshLayer = NavMesh.GetAreaFromName("Hurdle");
     }
 
@@ -75,22 +71,14 @@ public class zombie : enemy, IHaveName
         if (interestedInPlayer)
         {
             if (ourcharacterGFX) ourcharacterGFX.LookToDirection = GameManager.Instance.ref_Player.transform.position;
-            currentDistanceToPlayer = DistanceToPlayer();
-            MoveSpeed = Mathf.Lerp(MoveSpeed, MoveSpeedTarget, 2f * Time.deltaTime);
-            if (currentDistanceToPlayer > 50) ourAgent.speed = 9f;
-            else ourAgent.speed = MoveSpeed;
-            
-            if (UpdateCycleForMoveTargets_Current < UpdateCycleForMoveTargets_Target) UpdateCycleForMoveTargets_Current += 1 * Time.deltaTime;
-            else
-            {
+            currentDistanceToPlayer = DistanceToPlayer();            
+
                 if (currentDistanceToPlayer < 10)
                 {
                     int RandomChance = Random.Range(0, 10);
                     if (RandomChance == 0) AudioManager.Instance.SFX_ZombieYell();
                 }
 
-                UpdateCycleForMoveTargets_Current = 0;
-                MoveSpeedTarget = Random.Range(1f, 2f);
 
                 Vector3 moveTarget = Vector3.zero;
                 
@@ -101,7 +89,7 @@ public class zombie : enemy, IHaveName
                 }
 
                 ourAgent.SetDestination(moveTarget);                       
-            }
+            
 
 
             if (DistanceToPlayer() < attackDistance)
@@ -111,6 +99,7 @@ public class zombie : enemy, IHaveName
                 {
                     GameManager.Instance.ref_Stats.HP_Modify(-10);
                     GameManager.Instance.ref_particlespawner.Spawn_Blood(GameManager.Instance.ref_Player.transform.position);
+                    AudioManager.Instance.play_sfx(AudioManager.sfxtype.player_hit);
                     AttackTimer = Random.Range(2,3);
 
                 }

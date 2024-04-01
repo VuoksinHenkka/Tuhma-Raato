@@ -87,6 +87,11 @@ public class GamePlayer : MonoBehaviour
             ourcharacterGFX.ourMoveVelocity = movespeed_current;
         }
 
+        if (MoveVector_Final != Vector3.zero)
+        {
+            if (!Running) AudioManager.Instance.play_sfx(AudioManager.sfxtype.step);
+            else AudioManager.Instance.play_sfx(AudioManager.sfxtype.stepfast);
+        }
 
     }
 

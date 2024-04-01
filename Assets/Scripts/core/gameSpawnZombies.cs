@@ -6,9 +6,12 @@ using UnityEngine.AI;
 
 public class gameSpawnZombies : MonoBehaviour
 {
-    private float spawnFrequency = 40;
-    private int spawnAmount = 3;
+    private float spawnFrequency = 5;
+    private int spawnAmount = 2;
     public GameObject Zombie_Basic;
+    public GameObject Zombie_Fast;
+    public GameObject Zombie_Super;
+
     public List<Transform> spawnPositions;
     private float currenttime = 0;
 
@@ -16,6 +19,7 @@ public class gameSpawnZombies : MonoBehaviour
     private void Start()
     {
         currenttime = spawnFrequency;
+        GameManager.Instance.ourzombiespawner = this;
     }
 
     void Update()
@@ -25,31 +29,51 @@ public class gameSpawnZombies : MonoBehaviour
         else
         {
             currenttime = 0;
-            spawnFrequency = Mathf.Clamp(spawnFrequency--, 10, 40);
+            spawnFrequency = 5;
             StartSpawning();
         }
     }
 
     private void StartSpawning()
     {
+        SpawnFastZombie();
+
         for (int i = 0; i < spawnAmount; i++)
         {
             SpawnZombies();
+            if (GameManager.Instance.Time_Hour < 5) SpawnSuperZombie();
+
+
         }
-        if (spawnAmount < 10) spawnAmount++;
     }
 
     private void SpawnZombies()
     {
         Vector3 newspawnPosition = getSpawnPosition();
-        if (Vector3.Distance(newspawnPosition, GameManager.Instance.ref_Player.transform.position) < 10)
+        if (Vector3.Distance(newspawnPosition, GameManager.Instance.ref_Player.transform.position) < 8)
         {
-            SpawnZombies();
             return;
         }
         GameObject newInstance = Instantiate(Zombie_Basic, newspawnPosition, Quaternion.identity);
     }
-
+    private void SpawnSuperZombie()
+    {
+        Vector3 newspawnPosition = getSpawnPosition();
+        if (Vector3.Distance(newspawnPosition, GameManager.Instance.ref_Player.transform.position) < 8)
+        {
+            return;
+        }
+        GameObject newInstance = Instantiate(Zombie_Super, newspawnPosition, Quaternion.identity);
+    }
+    private void SpawnFastZombie()
+    {
+        Vector3 newspawnPosition = getSpawnPosition();
+        if (Vector3.Distance(newspawnPosition, GameManager.Instance.ref_Player.transform.position) < 8)
+        {
+            return;
+        }
+        GameObject newInstance = Instantiate(Zombie_Fast, newspawnPosition, Quaternion.identity);
+    }
     private Vector3 getSpawnPosition()
     {
         Transform currentSpawnPos = spawnPositions[0];

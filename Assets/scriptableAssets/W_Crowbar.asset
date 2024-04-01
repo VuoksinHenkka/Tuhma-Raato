@@ -15,10 +15,10 @@ MonoBehaviour:
   itemType: 0
   Name: Crowbar
   ActionCoolDown: 2
-  SendRange: 5
+  SendRange: 4
   Description: Slow and strong weapon
-  StaminaConsumption: 10
-  DamageOutput: 8
+  StaminaConsumption: 0
+  DamageOutput: 6
   GiveHealth: 0
   GiveStamina: 0
   GiveSanity: 0

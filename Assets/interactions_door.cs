@@ -32,7 +32,16 @@ public class interactions_door : InteractionsTarget
     public override void Receive(ItemDefiner _interactWith)
     {
         ourAnimator.SetTrigger("Use");
-        if (isLocked == false) ourAnimator.SetBool("Open", !ourAnimator.GetBool("Open"));
+        if (isLocked == false)
+        {
+            AudioManager.Instance.play_sfx(AudioManager.sfxtype.opendoor);
+            ourAnimator.SetBool("Open", !ourAnimator.GetBool("Open"));
+        }
+        else
+        {
+            AudioManager.Instance.play_sfx(AudioManager.sfxtype.lockeddoor);
+
+        }
         OnUse.Invoke();
 
         if (isLocked)

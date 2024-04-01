@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Pistol
-  ActionCoolDown: 2
+  ActionCoolDown: 1
   SendRange: 15
-  Description: Good range, but no much damage. 3 DMG
+  Description: Good range, but no much damage.
   StaminaConsumption: 0
-  DamageOutput: 3
+  DamageOutput: 2
   GiveHealth: 0
   GiveStamina: 0
   GiveSanity: 0
