@@ -204,5 +204,7 @@ public class GameManager : MonoBehaviour
         MaxCooldown = 1;
         ourSun.color = ourSun_colour_beforemidnight.Evaluate(0);
         ourStoryBeats.Open_Intro();
+
+        ref_Stats.Reset();
     }
 }

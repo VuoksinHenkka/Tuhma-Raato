@@ -13,7 +13,8 @@ public class Stats : MonoBehaviour
     public float Sanity = 100;
     public bool Sanity_ItsNight = false;
     public List<string> insanityMessages;
-
+    public int Keys = 0;
+    public int RFIDs = 0;
 
 
     public delegate void OnHurt();
@@ -21,12 +22,44 @@ public class Stats : MonoBehaviour
 
 
 
-
+    public void Reset()
+    {
+        HP = 100;
+        Stamina = 100;
+        Sanity = 100;
+        Keys = 0;
+        RFIDs = 0;
+    }
 
     private void Start()
     {
         GameManager.Instance.ref_Stats = this;
     }
+
+    public bool Use_Key()
+    {
+        if (Keys == 0) return false;
+        else Keys--;
+        return true;
+    }
+
+    public bool Use_RFIDs()
+    {
+        if (RFIDs == 0) return false;
+        else RFIDs--;
+        return true;
+    }
+
+    public void AddKey()
+    {
+        Keys++;
+    }
+
+    public void AddRFID()
+    {
+        RFIDs++;
+    }
+
     public void HP_Modify(float amount)
     {
         HP += amount;

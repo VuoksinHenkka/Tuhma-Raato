@@ -12,6 +12,8 @@ public class interactions_door : InteractionsTarget
     public bool isLocked = false;
     public GameObject NavMeshCarve;
     public List<ItemDefiner> UnlocksWith;
+    public enum locktype { Key, RFID};
+    public locktype ourlocktype = locktype.RFID;
 
     public void Start()
     {
@@ -46,19 +48,38 @@ public class interactions_door : InteractionsTarget
 
         if (isLocked)
         {
-            print("is locked");
-            foreach(ItemDefiner foundItem in UnlocksWith)
-            {
-                if (_interactWith.name == foundItem.Name)
+
+                if (ourlocktype == locktype.RFID)
                 {
-                    print("found the item in hand");
-                    isLocked = false;
-                    if(_interactWith.itemType == ItemDefiner.Type.Key) GameManager.Instance.ref_ItemSolver.SpendItemInHand();
-                    GameManager.Instance.ref_messagespawner.SpawnMessage("Unlocked the door.", Color.green, transform.position);
-                    return;
+                    if (GameManager.Instance.ref_Stats.Use_RFIDs() == true)
+                    {
+                        isLocked = false;
+                        GameManager.Instance.ref_messagespawner.SpawnMessage("Door unlocked.", Color.green, transform.position);
+                        return;
+                    }
+                    else
+                    {
+                        GameManager.Instance.ref_messagespawner.SpawnMessage("Needs an RFID tag to unlock.", Color.red, transform.position);
+                        return;
+                    }
                 }
-            }
-                GameManager.Instance.ref_messagespawner.SpawnMessage("Door is locked.", Color.red, transform.position);
+                if (ourlocktype == locktype.Key)
+                {
+                    if (GameManager.Instance.ref_Stats.Use_Key() == true)
+                    {
+                        isLocked = false;
+                        GameManager.Instance.ref_messagespawner.SpawnMessage("Door unlocked.", Color.green, transform.position);
+                        return;
+                    }
+                    else
+                    {
+                        GameManager.Instance.ref_messagespawner.SpawnMessage("Need a key to unlock.", Color.red, transform.position);
+                        return;
+                    }
+
+                }
+
+            GameManager.Instance.ref_messagespawner.SpawnMessage("Door is locked.", Color.red, transform.position);
         }
     }
 

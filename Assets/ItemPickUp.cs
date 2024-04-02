@@ -38,7 +38,21 @@ public class ItemPickUp : ItemReceiver, IHaveName, IHaveLimitedUseRange
     }
     public override void Receive(ItemDefiner received)
     {
-        
+        if (ourItem.Name == "Key")
+        {
+            GameManager.Instance.ref_Stats.AddKey();
+            GameManager.Instance.ref_messagespawner.SpawnMessage(("Picked up " + ourItem.Name), Color.white, GameManager.Instance.ref_Player.transform.position);
+            gameObject.SetActive(false);
+            return;
+        }
+        if (ourItem.Name == "RFID")
+        {
+            GameManager.Instance.ref_Stats.AddRFID();
+            GameManager.Instance.ref_messagespawner.SpawnMessage(("Picked up " + ourItem.Name), Color.white, GameManager.Instance.ref_Player.transform.position);
+            gameObject.SetActive(false);
+            return;
+        }
+
         bool CanPick = GameManager.Instance.ref_ItemSolver.Try_Pickup(ourItem);
         if (CanPick)
         {

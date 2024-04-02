@@ -36,6 +36,10 @@ public class Inventory : MonoBehaviour
     public TMP_Text Sanity_text;
     public Image Sanity_RadialFill;
 
+    public TMP_Text KeyAmount_text;
+    public TMP_Text RFIDAmount_text;
+    private int keyamounts = 0;
+    private int rfidsamount = 0;
 
     private void Awake()
     {
@@ -54,6 +58,16 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        if (keyamounts != GameManager.Instance.ref_Stats.Keys)
+        {
+            keyamounts = GameManager.Instance.ref_Stats.Keys;
+            KeyAmount_text.text = keyamounts.ToString();
+        }
+        if (rfidsamount != GameManager.Instance.ref_Stats.RFIDs)
+        {
+            rfidsamount = GameManager.Instance.ref_Stats.RFIDs;
+            RFIDAmount_text.text = rfidsamount.ToString();
+        }
         if (GameManager.Instance.currentGameSate != GameManager.gamestate.Gameplay && GameManager.Instance.currentGameSate != GameManager.gamestate.Inventory)
         {
             if (ourInventoryCanvas_Canvas.enabled)
