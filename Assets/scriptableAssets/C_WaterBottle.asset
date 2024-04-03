@@ -23,4 +23,4 @@ MonoBehaviour:
   GiveStamina: 100
   GiveSanity: 0
   ourTexture: {fileID: 0}
-  Icon: {fileID: 21300000, guid: e73e3ae23f4274491b7384a38dbfa552, type: 3}
+  Icon: {fileID: 21300000, guid: 10891b7bb902aa84fbaed73afff912fa, type: 3}

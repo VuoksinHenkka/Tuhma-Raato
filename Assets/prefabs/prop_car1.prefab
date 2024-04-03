@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2340050413943375107}
   - component: {fileID: 3565720217727504962}
   - component: {fileID: 233648056324723709}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: prop_car1
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5889431350111397862}
   - {fileID: 8844720320814166476}
   - {fileID: 2811535705377138927}
   - {fileID: 4315988174209943793}
@@ -93,8 +94,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.5754128, y: 2.9261484, z: 6.1724625}
-  m_Center: {x: 0.09738922, y: 0.9630742, z: 0.35709763}
+  m_Size: {x: 2.3478622, y: 2.9261484, z: 5.391121}
+  m_Center: {x: 0.009706497, y: 0.9630742, z: 0.5577965}
 --- !u!1 &570727867072879944
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +332,90 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1039551323482784935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5889431350111397862}
+  - component: {fileID: 7469708033931858959}
+  - component: {fileID: 8675695717209756916}
+  m_Layer: 6
+  m_Name: trunk
+  m_TagString: Item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5889431350111397862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039551323482784935}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.13, y: 1.1, z: -1.53}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2340050413943375107}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7469708033931858959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039551323482784935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5060d13a80041462ab6496ea30503ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  spawnDamageMessage: 1
+  ourName: Car Trunk
+  WhatWeSpawn: 0
+  SpawnPositions:
+  - {fileID: 3451123012493724830}
+  - {fileID: 5082801346785905424}
+  - {fileID: 5313184496966835973}
+  myAnimator: {fileID: 700888925974764498}
+  OpenWithItems: []
+  OpenWithAnything: 1
+  Opened: 0
+  ConsumeStamina: 0
+  ChanceOfDisappearing: 0
+  InteractionAnimation: Interact
+--- !u!65 &8675695717209756916
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039551323482784935}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.61936, y: 1.932417, z: 2.1377077}
+  m_Center: {x: -0.034132957, y: -0.24986261, z: 0.05114603}
 --- !u!1 &1131436565224552133
 GameObject:
   m_ObjectHideFlags: 0

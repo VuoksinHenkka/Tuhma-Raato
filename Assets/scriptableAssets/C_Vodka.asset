@@ -22,4 +22,5 @@ MonoBehaviour:
   GiveHealth: 0
   GiveStamina: -25
   GiveSanity: 100
-  Icon: {fileID: 21300000, guid: e73e3ae23f4274491b7384a38dbfa552, type: 3}
+  ourTexture: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 8a359a402afb88747b96b932b7b6c213, type: 3}
