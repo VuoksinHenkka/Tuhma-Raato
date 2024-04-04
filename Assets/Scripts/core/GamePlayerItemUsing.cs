@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GamePlayerItemUsing : MonoBehaviour
 {
@@ -9,14 +10,16 @@ public class GamePlayerItemUsing : MonoBehaviour
     public GameObject currentTarget;
     public UI_playerAimingInfoReader ourTargetInfoReader;
     public float cooldown = 0;
-    public LineRenderer ourInteractionLine;
+    public Image ourInteractionLine;
     public LayerMask forInteractionRayCast;
     public characterGFX ourCharacterGFX;
-
+    public ingamecursor ourCursor;
     private float currentInteractionRange = 4;
 
     private float clickCoolDown = 0.01f;
-
+    public Color cursor_notarget = new Color(1, 1, 1, 0.5f);
+    public Color cursor_targetnoreach = new Color(0.75f, 0, 0, 0.5f);
+    public Color cursor_targetandreach = new Color(0, 0.75f, 0, 0.5f);
 
     void Update()
     {
@@ -52,8 +55,7 @@ public class GamePlayerItemUsing : MonoBehaviour
         }
 
 
-        if (currentTarget == null) DrawInteractionLine(false);
-        else DrawInteractionLine(true);
+        CheckCursorColour();
 
         if (currentTarget)
         {
@@ -65,17 +67,23 @@ public class GamePlayerItemUsing : MonoBehaviour
 
 
 
-    private void DrawInteractionLine(bool turnOn)
+    private void CheckCursorColour()
     {
-        if (turnOn)
+        if (!currentTarget)
         {
-            ourInteractionLine.SetPosition(0, ourInteractionLine.transform.position);
-            ourInteractionLine.SetPosition(1, currentTarget.transform.position);
-            if (ourInteractionLine.enabled == false) ourInteractionLine.enabled = true;
-            if (IsInRange() == false) ourInteractionLine.SetColors(Color.red, Color.red);
-            else ourInteractionLine.SetColors(Color.green, Color.green);
+            if (ourInteractionLine.color != cursor_notarget) ourInteractionLine.color = cursor_notarget;
         }
-        else ourInteractionLine.enabled = false;
+        else
+        {
+            if (IsInRange())
+            {
+                if (ourInteractionLine.color != cursor_targetandreach) ourInteractionLine.color = cursor_targetandreach;
+            }
+            else
+            {
+                if (ourInteractionLine.color != cursor_targetnoreach) ourInteractionLine.color = cursor_targetnoreach;
+            }
+        }
 
     }
 
@@ -95,6 +103,7 @@ public class GamePlayerItemUsing : MonoBehaviour
         if (cooldown != 0 || currentTarget == null || IsInRange() == false) return;
         else if (currentTarget.CompareTag("Item"))
         {
+            ourCursor.currentScaleLerp = 1;
             currentTarget.BroadcastMessage("TryAttackSound", GameManager.Instance.ref_ItemSolver.currentlyHolding, SendMessageOptions.DontRequireReceiver);
             currentTarget.BroadcastMessage("Receive", GameManager.Instance.ref_ItemSolver.currentlyHolding, SendMessageOptions.DontRequireReceiver);
             cooldown = GameManager.Instance.ref_ItemSolver.currentlyHolding.ActionCoolDown;

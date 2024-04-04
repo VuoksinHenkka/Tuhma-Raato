@@ -11,7 +11,7 @@ public class UI_playerAimingInfoReader : MonoBehaviour
     private ItemReceiver ourInteractionTarget;
     public Transform ourPlayer;
     public Camera ourCamera;
-    public Canvas ourCanvas;
+    public GameObject ObjectInformation;
 
 
 
@@ -43,7 +43,7 @@ public class UI_playerAimingInfoReader : MonoBehaviour
                 float DistanceReading_final = Mathf.Lerp(0, 50, DistanceReading_Inverselerp);
                 ourTrackerElement.distancemeter.text = (Mathf.RoundToInt(DistanceReading_final)).ToString();
                 if (ourTrackerElement.gameObject.active == false) ourTrackerElement.gameObject.SetActive(true);
-                if (ourCanvas.enabled == false) ourCanvas.enabled = true;
+                if (ObjectInformation.activeSelf == false) ObjectInformation.SetActive(true);
             if (ourInteractionTarget is IHaveName)
             {
                 ourTrackerElement.NameOfTarget = (ourInteractionTarget as IHaveName).GiveName();
@@ -59,7 +59,7 @@ public class UI_playerAimingInfoReader : MonoBehaviour
         else
         {
             if (ourTrackerElement.gameObject.active) ourTrackerElement.gameObject.active = false;
-            ourCanvas.enabled = false;
+            if (ObjectInformation.activeSelf) ObjectInformation.SetActive(false);
         }
 
     }

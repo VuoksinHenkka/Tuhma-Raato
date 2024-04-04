@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 2
   Name: Nothing
   ActionCoolDown: 1
-  SendRange: 3
+  SendRange: 4.5
   Description: '-'
   StaminaConsumption: 0
   DamageOutput: 1

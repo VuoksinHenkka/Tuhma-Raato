@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C_Medikit
   m_EditorClassIdentifier: 
   itemType: 1
-  Name: Energy Drink
+  Name: Medikit
   ActionCoolDown: 1
   SendRange: 5
   Description: Fixes large booboos. +100 HP

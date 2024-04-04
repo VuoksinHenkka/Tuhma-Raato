@@ -108,7 +108,7 @@ MonoBehaviour:
   ourAgent: {fileID: 884574886638703597}
   interestedInPlayer: 1
   MoveSpeed: 0.75
-  HP: 4
+  HP: 6
   formationTarget: {x: 0, y: 0, z: 0}
   AnimationLaunched_Hurdle: 0
 --- !u!195 &884574886638703597
@@ -120,7 +120,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2448759149907254161}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 0.75
   m_Acceleration: 8
   avoidancePriority: 50
@@ -132,7 +132,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 25
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!1 &3426646064666403436
 GameObject:
   m_ObjectHideFlags: 0

@@ -84,7 +84,7 @@ public class Inventory : MonoBehaviour
         }
 
 
-        itemInHand_cooldown.fillAmount = Mathf.InverseLerp(0, GameManager.Instance.MaxCooldown, GameManager.Instance.cooldownTimer);
+        itemInHand_cooldown.fillAmount = 1 - Mathf.InverseLerp(0, GameManager.Instance.MaxCooldown, GameManager.Instance.cooldownTimer);
         //STAT STUFF
         if (GameManager.Instance.currentGameSate == GameManager.gamestate.Menu && ourStatsCanvas.enabled) ourStatsCanvas.enabled = false;
         else if (ourStatsCanvas.enabled == false) ourStatsCanvas.enabled = true;
@@ -138,8 +138,6 @@ public class Inventory : MonoBehaviour
             {
                 itemInHandName.text = GameManager.Instance.ref_ItemSolver.currentlyHolding.Name;
                 itemInHand.sprite = GameManager.Instance.ref_ItemSolver.currentlyHolding.Icon;
-                itemInHand_cooldown.sprite = GameManager.Instance.ref_ItemSolver.currentlyHolding.Icon;
-
             }
         }
 

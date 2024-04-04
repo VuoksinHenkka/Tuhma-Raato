@@ -107,8 +107,8 @@ MonoBehaviour:
   ourcharacterGFX: {fileID: 4886756934149668437}
   ourAgent: {fileID: 884574886638703597}
   interestedInPlayer: 1
-  MoveSpeed: 1.5
-  HP: 10
+  MoveSpeed: 3
+  HP: 20
   formationTarget: {x: 0, y: 0, z: 0}
   AnimationLaunched_Hurdle: 0
 --- !u!195 &884574886638703597
@@ -120,11 +120,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 2448759149907254161}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 1.5
-  m_Acceleration: 16
+  m_Radius: 1
+  m_Speed: 3
+  m_Acceleration: 128
   avoidancePriority: 50
-  m_AngularSpeed: 200
+  m_AngularSpeed: 300
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -132,7 +132,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 25
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!1 &3426646064666403436
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Crowbar
-  ActionCoolDown: 2
-  SendRange: 4
-  Description: Slow and strong weapon
-  StaminaConsumption: 0
+  ActionCoolDown: 0
+  SendRange: 4.5
+  Description: Strong but eats Stamina
+  StaminaConsumption: 1
   DamageOutput: 6
   GiveHealth: 0
   GiveStamina: 0
   GiveSanity: 0
   ourTexture: {fileID: 0}
-  Icon: {fileID: 21300000, guid: 54e665309f7fc4e4bb4b24ae7d426c74, type: 3}
+  Icon: {fileID: 21300000, guid: 89e5742f87709440988113c36216658b, type: 3}

@@ -8,10 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5464713732279711878, guid: ac2c1528341ac41bf98a723b652eb45b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 756c02fcf5c94440885dddceb7d30446,
+        type: 3}
     - target: {fileID: 5905479177642008882, guid: ac2c1528341ac41bf98a723b652eb45b,
         type: 3}
       propertyPath: m_Name
-      value: mid_pistol
+      value: mid_hammer
       objectReference: {fileID: 0}
     - target: {fileID: 5905479177642008882, guid: ac2c1528341ac41bf98a723b652eb45b,
         type: 3}

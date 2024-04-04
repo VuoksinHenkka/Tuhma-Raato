@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Knife
-  ActionCoolDown: 1
-  SendRange: 3
+  ActionCoolDown: 0
+  SendRange: 4.5
   Description: Fast and lightweight.
   StaminaConsumption: 0
   DamageOutput: 2
@@ -23,4 +23,4 @@ MonoBehaviour:
   GiveStamina: 0
   GiveSanity: 0
   ourTexture: {fileID: 0}
-  Icon: {fileID: 21300000, guid: 54e665309f7fc4e4bb4b24ae7d426c74, type: 3}
+  Icon: {fileID: 21300000, guid: f4b1c1f07b4ac4782ba90efb967475b9, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: C_Bandage
   m_EditorClassIdentifier: 
   itemType: 1
-  Name: Energy Drink
+  Name: Bandage
   ActionCoolDown: 1
   SendRange: 5
   Description: Fixes minor booboos. +50 HP
