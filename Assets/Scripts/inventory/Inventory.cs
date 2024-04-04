@@ -206,5 +206,30 @@ public class Inventory : MonoBehaviour
         int i = toConsume.ourIndex;
         GameManager.Instance.ref_ItemSolver.PlayerItems[i] = GameManager.Instance.ref_ItemSolver.emptyItem;
         RefreshInventory();
+
+        switch(consumeparameters.Name)
+        {
+
+            case "Liquorice":
+                GameManager.Instance.ref_Stats._liquorice++;
+                break;
+            case "Vodka":
+                GameManager.Instance.ref_Stats._vodka++;
+                break;
+            case "Waterbottle":
+                GameManager.Instance.ref_Stats._water++;
+                break;
+            case "Lint":
+                GameManager.Instance.ref_Stats._lint++;
+                break;
+            case "Money":
+                GameManager.Instance.ref_Stats._money++;
+                break;
+            case "Energy Drink":
+                GameManager.Instance.ref_Stats._water++;
+                break;
+            default:
+                break;
+        }
     }
 }

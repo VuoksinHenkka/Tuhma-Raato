@@ -104,13 +104,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa80f7e4d4d5d0448ea3a27842bdd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ourZombieType: 1
   ourcharacterGFX: {fileID: 4886756934149668437}
   ourAgent: {fileID: 884574886638703597}
   interestedInPlayer: 1
-  MoveSpeed: 3
-  HP: 1
+  MoveSpeed: 4.5
+  HP: 2
   formationTarget: {x: 0, y: 0, z: 0}
+  FixingPath: 0
   AnimationLaunched_Hurdle: 0
+  Delisting: 0
 --- !u!195 &884574886638703597
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -120,19 +123,19 @@ NavMeshAgent:
   m_GameObject: {fileID: 2448759149907254161}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 3
-  m_Acceleration: 128
+  m_Radius: 0.6
+  m_Speed: 4.5
+  m_Acceleration: 2000
   avoidancePriority: 50
-  m_AngularSpeed: 500
-  m_StoppingDistance: 0.5
+  m_AngularSpeed: 2000
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 25
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 3
 --- !u!1 &3426646064666403436
 GameObject:
   m_ObjectHideFlags: 0

@@ -88,7 +88,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -104,13 +104,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa80f7e4d4d5d0448ea3a27842bdd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ourZombieType: 1
   ourcharacterGFX: {fileID: 4886756934149668437}
   ourAgent: {fileID: 884574886638703597}
   interestedInPlayer: 1
-  MoveSpeed: 0.75
-  HP: 6
+  MoveSpeed: 1
+  HP: 8
   formationTarget: {x: 0, y: 0, z: 0}
+  FixingPath: 0
   AnimationLaunched_Hurdle: 0
+  Delisting: 0
 --- !u!195 &884574886638703597
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -120,8 +123,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 2448759149907254161}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
-  m_Speed: 0.75
+  m_Radius: 0.6
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

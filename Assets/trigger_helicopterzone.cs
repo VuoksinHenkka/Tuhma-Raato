@@ -74,7 +74,7 @@ public class trigger_helicopterzone : MonoBehaviour
             if (ladderlerp != 1)
             {
                 EvacStatusText.color = Color.yellow;
-                ladderlerp = Mathf.Clamp(ladderlerp += 0.01f * Time.deltaTime, 0, 1);
+                ladderlerp = Mathf.Clamp(ladderlerp += 0.025f * Time.deltaTime, 0, 1);
                 EvacStatusText.text = Mathf.RoundToInt(Mathf.Lerp(0, 100, ladderlerp)).ToString() + "%";
             }
             else

@@ -21,13 +21,12 @@ public class zombie : enemy, IHaveName
     public bool interestedInPlayer = true;
     private float attackDistance = 2;
     private float currentDistanceToPlayer = 10;
-    private float UpdateCycleForMoveTargets_Target = 2;
-    private float AttackTimer = 0.5f;
+    private float AttackTimer = 0f;
     private string ourName = "Zombie";
     public float MoveSpeed = 1;
     public int HP = 5;
     public Vector3 formationTarget = Vector3.zero;
-
+    public bool FixingPath = false;
 
     private OffMeshLinkData ourMeshLinkData;
     public bool AnimationLaunched_Hurdle = false;
@@ -36,9 +35,10 @@ public class zombie : enemy, IHaveName
 
     private void OnEnable()
     {
+        FixingPath = false;
         Delisting = false;
         ourAgent.avoidancePriority = Random.Range(20, 60);
-        GameManager.Instance.SpawnedZombie(ourZombieType);
+        if(GameManager.Instance)GameManager.Instance.SpawnedZombie(ourZombieType);
     }
     public override string GiveName()
     {
@@ -51,7 +51,7 @@ public class zombie : enemy, IHaveName
     }
     private void Awake()
     {
-        ourAgent.avoidancePriority = Random.Range(30, 60);
+        if(ourZombieType != ZombieType.SUPER) ourAgent.avoidancePriority = Random.Range(30, 60);
         ourAgent.speed = MoveSpeed;
         Hurdle_NavMeshLayer = NavMesh.GetAreaFromName("Hurdle");
     }
@@ -71,10 +71,12 @@ public class zombie : enemy, IHaveName
     private void OnDisable()
     {
         DelistZombie();
+        FixingPath = false;
     }
 
     public void DelistZombie()
     {
+        StopAllCoroutines();
         if (Delisting) return;
         Delisting = true;
         GameManager.Instance.RemovedZombie(ourZombieType);
@@ -93,31 +95,27 @@ public class zombie : enemy, IHaveName
 
     private void Update()
     {
-        if (ourAgent.isOnNavMesh == false) Destroy(gameObject);
-        if (interestedInPlayer)
-        {
+        
+            ourAgent.SetDestination(GameManager.Instance.ref_Player.transform.position);
+
+            if (ourAgent.hasPath == false)
+            {
+                if (FixingPath == false)
+                {
+                    StartCoroutine(SolveStuck());
+                    FixingPath = true;
+                }
+            }
+            else if (FixingPath) FixingPath = false;
             if (ourcharacterGFX) ourcharacterGFX.LookToDirection = GameManager.Instance.ref_Player.transform.position;
-            currentDistanceToPlayer = DistanceToPlayer();            
-
-                if (currentDistanceToPlayer < 10)
-                {
-                    int RandomChance = Random.Range(0, 10);
-                    if (RandomChance == 0) AudioManager.Instance.SFX_ZombieYell();
-                }
 
 
-                Vector3 moveTarget = Vector3.zero;
-                
-                if (formationTarget != Vector3.zero && currentDistanceToPlayer > 7) moveTarget = formationTarget;
-                else
-                {
-                    moveTarget = GameManager.Instance.ref_Player.transform.position;
-                }
-
-                ourAgent.SetDestination(moveTarget);                       
+            if (DistanceToPlayer() < 10)
+            {
+                int RandomChance = Random.Range(0, 10);
+                if (RandomChance == 0) AudioManager.Instance.SFX_ZombieYell();
+            }
             
-
-
             if (DistanceToPlayer() < attackDistance)
             {
                 if (AttackTimer != 0) AttackTimer = Mathf.Clamp(AttackTimer -= 1 * Time.deltaTime, 0, 2);
@@ -126,12 +124,11 @@ public class zombie : enemy, IHaveName
                     GameManager.Instance.ref_Stats.HP_Modify(-10);
                     GameManager.Instance.ref_particlespawner.Spawn_Blood(GameManager.Instance.ref_Player.transform.position);
                     AudioManager.Instance.play_sfx(AudioManager.sfxtype.player_hit);
-                    AttackTimer = Random.Range(2,3);
+                    AttackTimer = 0.5f;
 
                 }
             }
-            else if (AttackTimer != 0.5f) AttackTimer = 0.5f;
-        }
+            else if (AttackTimer != 0.5f) AttackTimer = 0.5f;       
 
           
         ourcharacterGFX.ourMoveVelocity = ourAgent.velocity.magnitude;
@@ -139,6 +136,32 @@ public class zombie : enemy, IHaveName
         if (currentDistanceToPlayer < 30) NavMeshLayerReactions();
 
     }
+
+
+    IEnumerator SolveStuck()
+    {
+        FixingPath = true;
+        float lastDistanceToTarget = ourAgent.remainingDistance;
+        yield return null;
+
+        while (FixingPath)
+        {
+            if (ourAgent.remainingDistance > ourAgent.stoppingDistance)
+            {
+                float distanceToTarget = ourAgent.remainingDistance;
+                if (lastDistanceToTarget - distanceToTarget < 1f)
+                {
+                    Vector3 destination = ourAgent.destination;
+                    ourAgent.ResetPath();
+                    ourAgent.SetDestination(destination);
+                    lastDistanceToTarget = distanceToTarget;
+                }
+                yield return new WaitForSeconds(Random.Range(0.25f,1f));
+            }
+            yield return null;
+        }
+        yield return null;
+     }
 
     private void NavMeshLayerReactions()
     {
@@ -178,6 +201,7 @@ public class zombie : enemy, IHaveName
 
     public override void Die()
     {
+        GameManager.Instance.ref_Stats._zombies++;
         gameObject.SetActive(false);
     }
     public override void Burn()

@@ -49,7 +49,7 @@ public class gameSpawnZombies : MonoBehaviour
 
     private void SpawnZombies()
     {
-        if (GameManager.Instance.activeNormalZombies == 10) return;
+        if (GameManager.Instance.activeNormalZombies == 15) return;
         Vector3 newspawnPosition = getSpawnPosition();
         if (Vector3.Distance(newspawnPosition, GameManager.Instance.ref_Player.transform.position) < 8)
         {
@@ -69,7 +69,7 @@ public class gameSpawnZombies : MonoBehaviour
     }
     private void SpawnFastZombie()
     {
-        if (GameManager.Instance.activeFastZombies == 10) return;
+        if (GameManager.Instance.activeFastZombies == 5) return;
         Vector3 newspawnPosition = getSpawnPosition();
         if (Vector3.Distance(newspawnPosition, GameManager.Instance.ref_Player.transform.position) < 8)
         {

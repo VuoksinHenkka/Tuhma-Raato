@@ -17,6 +17,13 @@ public class Stats : MonoBehaviour
     public int RFIDs = 0;
 
 
+    public int _liquorice = 0;
+    public int _vodka = 0;
+    public int _water = 0;
+    public int _lint = 0;
+    public int _money = 0;
+    public int _zombies = 0;
+
     public delegate void OnHurt();
     public event    OnHurt onHurt;
 
@@ -29,6 +36,12 @@ public class Stats : MonoBehaviour
         Sanity = 100;
         Keys = 0;
         RFIDs = 0;
+        _liquorice = 0;
+        _vodka = 0;
+        _water = 0;
+        _lint = 0;
+        _money = 0;
+        _zombies = 0;
     }
 
     private void Start()
