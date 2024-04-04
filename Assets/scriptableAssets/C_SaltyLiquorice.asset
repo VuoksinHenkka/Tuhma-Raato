@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: Salty Liquorice
   ActionCoolDown: 1
   SendRange: 5
-  Description: Finnish traditional cuisine. +5 Stamina
+  Description: Finnish basic food. Gives a little sanity.
   StaminaConsumption: 0
   DamageOutput: 0
   GiveHealth: 0
-  GiveStamina: 50
-  GiveSanity: 0
+  GiveStamina: 0
+  GiveSanity: 5
   ourTexture: {fileID: 0}
   Icon: {fileID: 21300000, guid: c07279e151de3934391f983d1f9d6f7a, type: 3}

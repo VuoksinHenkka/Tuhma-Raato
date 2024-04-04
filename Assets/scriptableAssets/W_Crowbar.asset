@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Crowbar
-  ActionCoolDown: 0
+  ActionCoolDown: 1
   SendRange: 4.5
   Description: Strong but eats Stamina
-  StaminaConsumption: 1
+  StaminaConsumption: 2
   DamageOutput: 6
   GiveHealth: 0
   GiveStamina: 0

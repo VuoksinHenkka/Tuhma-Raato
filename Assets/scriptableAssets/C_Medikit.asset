@@ -16,10 +16,10 @@ MonoBehaviour:
   Name: Medikit
   ActionCoolDown: 1
   SendRange: 5
-  Description: Fixes large booboos. +100 HP
+  Description: Fixes large booboos.
   StaminaConsumption: 0
   DamageOutput: 0
-  GiveHealth: 100
+  GiveHealth: 50
   GiveStamina: 0
   GiveSanity: 0
   ourTexture: {fileID: 0}

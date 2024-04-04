@@ -77,7 +77,40 @@ public class GameManager : MonoBehaviour
         ourSun.color = ourSun_colour_beforemidnight.Evaluate(0);
     }
 
+    public void SpawnedZombie(zombie.ZombieType wasSpawned)
+    {
+        switch(wasSpawned)
+        {
+            case zombie.ZombieType.FAST:
+                activeFastZombies++;
+                break;
+            case zombie.ZombieType.NORMAL:
+                activeNormalZombies++;
+                break;
+            case zombie.ZombieType.SUPER:
+                activeSuperzombies++;
+                break;
+        }
+    }
 
+    public void RemovedZombie(zombie.ZombieType wasSpawned)
+    {
+        switch (wasSpawned)
+        {
+            case zombie.ZombieType.FAST:
+                activeFastZombies--;
+                if (activeFastZombies < 0) activeFastZombies = 0;
+                break;
+            case zombie.ZombieType.NORMAL:
+                activeNormalZombies--;
+                if (activeNormalZombies < 0) activeNormalZombies = 0;
+                break;
+            case zombie.ZombieType.SUPER:
+                activeSuperzombies--;
+                if (activeSuperzombies < 0) activeSuperzombies = 0;
+                break;
+        }
+    }
     private void Update()
     {
         if (ref_Stats.CurrentInsanityFX == Stats.InsanityFX.SpeedUpGame) GameSpeedInsanityModifier = 1;

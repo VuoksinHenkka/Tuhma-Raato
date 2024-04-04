@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: Vodka
   ActionCoolDown: 1
   SendRange: 5
-  Description: Lift thy mood. +100 Sanity -25 Stamina
+  Description: Fully replenishes sanity but is unhealthy.
   StaminaConsumption: 0
   DamageOutput: 0
-  GiveHealth: 0
-  GiveStamina: -25
+  GiveHealth: -10
+  GiveStamina: 0
   GiveSanity: 100
   ourTexture: {fileID: 0}
   Icon: {fileID: 21300000, guid: 8a359a402afb88747b96b932b7b6c213, type: 3}

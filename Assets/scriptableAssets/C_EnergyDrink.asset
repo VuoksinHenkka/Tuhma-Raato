@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Energy Drink
   ActionCoolDown: 1
   SendRange: 5
-  Description: Consumable. +100 Stamina
+  Description: Consumable. Restores all Stamina.
   StaminaConsumption: 0
   DamageOutput: 0
   GiveHealth: 0

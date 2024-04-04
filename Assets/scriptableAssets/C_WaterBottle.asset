@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: Waterbottle
   ActionCoolDown: 1
   SendRange: 5
-  Description: Bottle of fresh water. +100 Stamina +50HP
+  Description: Water is good
   StaminaConsumption: 0
   DamageOutput: 0
-  GiveHealth: 50
-  GiveStamina: 100
+  GiveHealth: 25
+  GiveStamina: 25
   GiveSanity: 0
   ourTexture: {fileID: 0}
   Icon: {fileID: 21300000, guid: 10891b7bb902aa84fbaed73afff912fa, type: 3}

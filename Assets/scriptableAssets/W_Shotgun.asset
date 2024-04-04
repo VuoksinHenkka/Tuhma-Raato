@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Shotgun
   ActionCoolDown: 2
   SendRange: 15
-  Description: Massive damage with short range. 15 DMG
+  Description: Massive damage but slow to use
   StaminaConsumption: 0
   DamageOutput: 20
   GiveHealth: 0

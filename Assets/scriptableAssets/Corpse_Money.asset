@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: Money
   ActionCoolDown: 1
   SendRange: 5
-  Description: Gives a moral boost (Sanity +5)
+  Description: Incentive for survival.
   StaminaConsumption: 0
   DamageOutput: 0
   GiveHealth: 0
   GiveStamina: 0
-  GiveSanity: 20
+  GiveSanity: 25
   ourTexture: {fileID: 0}
   Icon: {fileID: 21300000, guid: d061c277b0f4ecf47980e345ba6d6937, type: 3}

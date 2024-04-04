@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   Name: Machinegun
-  ActionCoolDown: 0.075
+  ActionCoolDown: 0.09
   SendRange: 15
   Description: Ho ho ho
   StaminaConsumption: 0

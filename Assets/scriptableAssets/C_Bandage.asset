@@ -16,10 +16,10 @@ MonoBehaviour:
   Name: Bandage
   ActionCoolDown: 1
   SendRange: 5
-  Description: Fixes minor booboos. +50 HP
+  Description: Fixes minor injuries
   StaminaConsumption: 0
   DamageOutput: 0
-  GiveHealth: 50
+  GiveHealth: 25
   GiveStamina: 0
   GiveSanity: 0
   ourTexture: {fileID: 0}

@@ -5,6 +5,17 @@ using UnityEngine.AI;
 
 public class zombie : enemy, IHaveName
 {
+
+
+    public enum ZombieType
+    {
+        FAST,
+        NORMAL,
+        SUPER
+    }
+
+    public ZombieType ourZombieType = ZombieType.NORMAL;
+
     public characterGFX ourcharacterGFX;
     public NavMeshAgent ourAgent;
     public bool interestedInPlayer = true;
@@ -21,11 +32,13 @@ public class zombie : enemy, IHaveName
     private OffMeshLinkData ourMeshLinkData;
     public bool AnimationLaunched_Hurdle = false;
     private int Hurdle_NavMeshLayer = 0;
-
+    public bool Delisting = false;
 
     private void OnEnable()
     {
+        Delisting = false;
         ourAgent.avoidancePriority = Random.Range(20, 60);
+        GameManager.Instance.SpawnedZombie(ourZombieType);
     }
     public override string GiveName()
     {
@@ -55,6 +68,18 @@ public class zombie : enemy, IHaveName
         Destroy(gameObject);
     }
 
+    private void OnDisable()
+    {
+        DelistZombie();
+    }
+
+    public void DelistZombie()
+    {
+        if (Delisting) return;
+        Delisting = true;
+        GameManager.Instance.RemovedZombie(ourZombieType);
+    }
+
     private void OnDestroy()
     {
         if (GameManager.Instance == null) return;
@@ -62,6 +87,7 @@ public class zombie : enemy, IHaveName
         GameManager.Instance.onGameBegin -= Clean;
         GameManager.Instance.onGameOver -= Clean;
         GameManager.Instance.onGameEnding -= Clean;
+        DelistZombie();
     }
 
 
