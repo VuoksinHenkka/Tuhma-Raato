@@ -3,6 +3,7 @@ TUHMA RAATO a game by Henri Tervapuro
 Trailer voice: Christopher Jayawardena. 
 Shotgun mesh for renders: PolyElina/Sketchfab. 
 SMG mesh for rendering: Vladek/Sketchfab.
+Few (herringbore floor tile, concrete, bricks) textures courtesy of https://freepbr.com/
 
 
 1. Design
