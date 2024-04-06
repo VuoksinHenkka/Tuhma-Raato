@@ -20,6 +20,7 @@ public class trigger_helicopterzone : MonoBehaviour
     public TMP_Text EvacStatusText;
     public GameObject EvacPromptText;
     public GameObject ourRootObject;
+    public AudioSource ourMusic;
 
     private Vector3 originalOffset = Vector3.zero;
 
@@ -67,6 +68,7 @@ public class trigger_helicopterzone : MonoBehaviour
 
     public void Update()
     {
+        ourMusic.pitch = Mathf.Lerp(0.75f, 2, ladderlerp);
         if (PlayerNear)
         {
             if (ourGroundCircle.color != groundciclecolor_on) ourGroundCircle.color = groundciclecolor_on;
@@ -74,7 +76,7 @@ public class trigger_helicopterzone : MonoBehaviour
             if (ladderlerp != 1)
             {
                 EvacStatusText.color = Color.yellow;
-                ladderlerp = Mathf.Clamp(ladderlerp += 0.025f * Time.deltaTime, 0, 1);
+                ladderlerp = Mathf.Clamp(ladderlerp += 0.0175f * Time.deltaTime, 0, 1);
                 EvacStatusText.text = Mathf.RoundToInt(Mathf.Lerp(0, 100, ladderlerp)).ToString() + "%";
             }
             else
